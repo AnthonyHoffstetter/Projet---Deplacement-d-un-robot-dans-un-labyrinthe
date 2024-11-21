@@ -21,8 +21,10 @@ chaque fois qu’il fait un déplacement, il notifie tous les observateurs de ro
 # Algorithme de sortie d’un labyrinthe
 On veut programmer le robot pour le faire sortir d’un labyrinthe. Pour cela on veut implémenter
 les deux algorithmes de sortie d'un labyrinthe suivants :
+
 – algorithme main droite : se déplacer en ayant toujours un mur à sa droite (si au début il n’y a
 pas de mut à droite, aller tout droit jusqu’à rencontrer un mur)
+
 – algorithme de Pledge :
 1 aller tout droit jusqu’au mur, passer à l’instruction 2
 2 longer le mur par la droite (ou par la gauche, mais toujours dans le même sens) jusqu’à ce
@@ -36,32 +38,3 @@ fait sortir le robot le robot du labyrinthe en visualisant les déplacements du 
 nombre de cases parcourues par le robot.
 Le terrain et le robot seront affiché en mode texte. On pourra choisir un mode texte simple ou un
 mode texte amélioré, sachant pour pourrait plus tard envisager un affichage graphique.
-
-Mode texte simple :
-XXXXXXXXXXXXXXXXXXXX
-X......XXXX........X
-X..................X
-X..X...............X
-X..X........X......X
-X..X........X......X
-X..X........X..>...X
-XXXXXXXXXXXXXXXXXXXX
-
-Mode texte amélioré 1 :
-+------+##+--------+
-|......+--+........|
-| .................|
-|..|...............|
-|..|........|......|
-|..|........|......|
-|..|........|..>...|
-+--+--------+------+
-
-Mode texte amélioré 2 (utilise des caractères unicode de bordure) :
-┏━━━━━━┓▄▄┏━━━━━━━━┓
-┃......┗━━┛........┃
-┃ .................┃
-┃..┃...............┃
-┃..┃........┃......┃
-┃..┃........┃..▷...┃
-┗━━┻━━━━━━━━┻━━━━━━┛
