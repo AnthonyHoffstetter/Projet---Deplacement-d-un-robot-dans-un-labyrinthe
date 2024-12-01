@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//Transformer cette fonction en test unitaire ! #Anthony
 void testPosition()
 {
     position p1(2,5);
