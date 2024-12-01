@@ -6,3 +6,4 @@ RobotLabyrinthe.cbp
 obj/Debug/position.o
 RobotLabyrinthe.depend
 obj/Debug/robot.o
+obj/Debug/terrain.o
