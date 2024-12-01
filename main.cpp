@@ -51,5 +51,5 @@ void testterrain() {
 
 int main()
 {
-    testterrain();
+
 }
