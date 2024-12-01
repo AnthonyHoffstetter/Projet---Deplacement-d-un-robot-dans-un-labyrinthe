@@ -1,5 +1,5 @@
 #include "robot.h"
-
+#include <iostream>
 
 position robot::getPositionActuelle() const
 {
@@ -24,6 +24,10 @@ char robot::getDirection() const
 
 void robot::avancer()
 {
+    /*if (detecterObstacleAvant()) {
+        std::cout << "Obstacle détecté devant. Impossible d'avancer !" << std::endl;
+        return;
+    }*/
     switch (d_direction) {
         case 'N':
             d_position.setPosition(d_position.getX()-1, d_position.getY());
@@ -42,12 +46,16 @@ void robot::tournerGauche()
     switch (d_direction) {
         case 'N':
             d_direction='O';
+            break;
         case 'E':
             d_direction='N';
+            break;
         case 'S':
             d_direction='E';
+            break;
         case 'O':
             d_direction='S';
+            break;
     }
 }
 
@@ -57,12 +65,18 @@ void robot::tournerDroite()
     switch (d_direction) {
         case 'N':
             d_direction='E';
+            break;
         case 'E':
             d_direction='S';
+            break;
         case 'S':
             d_direction='O';
+            break;
         case 'O':
             d_direction='N';
+            break;
     }
 }
+
+// ?
 
