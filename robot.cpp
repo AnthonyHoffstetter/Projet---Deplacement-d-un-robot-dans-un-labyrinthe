@@ -28,19 +28,19 @@ char robot::getDirection() const
 
 void robot::avancer()
 {
-    /*if (detecterObstacleAvant()) {
-        std::cout << "Obstacle détecté devant. Impossible d'avancer !" << std::endl;
-        return;
-    }*/
     switch (d_direction) {
         case 'N':
-            d_position.setPosition(d_position.getX()-1, d_position.getY());
-        case 'E':
-            d_position.setPosition(d_position.getX(), d_position.getY()+1);
-        case 'S':
-            d_position.setPosition(d_position.getX()+1, d_position.getY());
-        case 'O':
             d_position.setPosition(d_position.getX(), d_position.getY()-1);
+            break;
+        case 'E':
+            d_position.setPosition(d_position.getX()+1, d_position.getY());
+            break;
+        case 'S':
+            d_position.setPosition(d_position.getX(), d_position.getY()+1);
+            break;
+        case 'O':
+            d_position.setPosition(d_position.getX()-1, d_position.getY());
+            break;
     }
 }
 
@@ -82,5 +82,54 @@ void robot::tournerDroite()
     }
 }
 
-// ?
+bool robot::detecterObstacleDevant(const terrain& terrain)
+{
+    // Obtenir la position actuelle du robot
+    position posDevant{};
+
+    // Calculer la position devant le robot en fonction de sa direction
+    switch (d_direction)
+    {
+        case 'N':
+            posDevant.setPosition(d_position.getX(), d_position.getY()-1);
+            break;
+        case 'E':
+            posDevant.setPosition(d_position.getX()+1, d_position.getY());
+            break;
+        case 'S':
+            posDevant.setPosition(d_position.getX(), d_position.getY()+1);
+            break;
+        case 'O':
+            posDevant.setPosition(d_position.getX()-1, d_position.getY());
+            break;
+    }
+
+    return !terrain.estLibre(posDevant);
+}
+
+
+bool robot::detecterObstacleDroite(const terrain& terrain)
+{
+    // Obtenir la position actuelle du robot
+    position posDroite{};
+
+    // Calculer la position devant le robot en fonction de sa direction
+    switch (d_direction)
+    {
+        case 'N':
+            posDroite.setPosition(d_position.getX()+1, d_position.getY());
+            break;
+        case 'E':
+            posDroite.setPosition(d_position.getX(), d_position.getY()+1);
+            break;
+        case 'S':
+            posDroite.setPosition(d_position.getX()-1, d_position.getY());
+            break;
+        case 'O':
+            posDroite.setPosition(d_position.getX(), d_position.getY()-1);
+            break;
+    }
+
+    return !terrain.estLibre(posDroite);
+}
 

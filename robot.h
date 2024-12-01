@@ -3,10 +3,11 @@
 
 #include "position.h"
 #include <vector>
+#include "terrain.h"
 
 using namespace std;
 
-/**Les fonctions en commentaires ne sont pas encore définissable tant que nous n'avons pas les autres classes */
+/**Faire les tests unitaires de cette classe */
 
 class robot {
     private:
@@ -18,8 +19,8 @@ class robot {
         robot(const position &pos, char direction);
         position getPositionActuelle() const;
         char getDirection() const;
-        //bool detecterObstacleAvant(const terrain& terrain);
-        //bool detecterObstacleDroite(const terrain& terrain);
+        bool detecterObstacleDevant(const terrain& terrain);
+        bool detecterObstacleDroite(const terrain& terrain);
         //void enregistrerObservateur(const robotObservateur &obs);
         void notifierObservateurs();
         void avancer();
