@@ -1,10 +1,11 @@
 #include <iostream>
 #include "position.h"
 #include "Terrain.h"
+#include "robot.h"
 
 using namespace std;
 
-//Transformer cette fonction en test unitaire ! #Anthony
+/**Transformer cette fonction en test unitaire */
 void testPosition()
 {
     position p1(2,5);
@@ -19,7 +20,7 @@ void testPosition()
         cout<<"p1 et p2 sont differents"<<endl;
 }
 
-
+/**Transformer cette fonction en test unitaire */
 void testterrain() {
 
 // Création d'un objet Terrain
@@ -47,6 +48,8 @@ void testterrain() {
 
 }
 
+
 int main()
 {
+    testterrain();
 }
