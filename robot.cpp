@@ -1,6 +1,10 @@
 #include "robot.h"
 #include <iostream>
 
+robot::robot(const position &pos, char direction):
+    d_position{0,0},d_direction{'N'}
+{}
+
 position robot::getPositionActuelle() const
 {
     return d_position;
