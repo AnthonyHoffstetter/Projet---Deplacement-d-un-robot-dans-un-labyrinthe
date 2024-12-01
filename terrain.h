@@ -1,35 +1,37 @@
-#ifndef TERRAIN_H
-#define TERRAIN_H
+#include "position.h"
 
-#include <vector>
-#include <string>
-#include <iostream>
-#include "position.h" 
+position::position(int x,int y) :
+    d_x{x}, d_y{y}
+{}
 
-class Terrain {
-public:
 
-    Terrain();
+int position::getX() const
+{
+    return d_x;
+}
 
-    bool chargerDepuisFichier(const std::string& nomFichier);
+int position::getY() const
+{
+    return d_y;
+}
 
-    void afficher() const;
+void position::setPosition(int x,int y)
+{
+    d_x=x;
+    d_y=y;
+}
 
-    int getLargeur() const;
-    int getLongueur() const;
+bool position::estEgale(const position &p) const
+{
+    return d_x==p.getX() && d_y==p.getY();
+}
 
-    position getCaseDepart() const;
-    position getCaseArrivee() const;
+bool position::operator==(const position &p) const
+{
+    return estEgale(p);
+}
 
-    bool estLibre(const position& sp) const;
-
-private:
-    std::vector<std::vector<char>> d_terrain; 
-    int d_largeur;  
-    int d_longueur; 
-    position d_depart;   
-    position d_arrivee;  
-};
-
-#endif 
-
+bool position::operator!=(const position &p) const
+{
+    return !estEgale(p);
+}
