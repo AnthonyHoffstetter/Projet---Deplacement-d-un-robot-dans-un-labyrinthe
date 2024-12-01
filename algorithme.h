@@ -1,14 +1,14 @@
 #ifndef ALGORITHME_H
 #define ALGORITHME_H
 
-class robot;
-class terrain;
+#include "robot.h"
+#include "terrain.h"
 
 class algorithme
 {
 public:
     virtual ~algorithme()=default;
-    virtual void executer(const robot &r, const terrain &t)=0;
+    virtual void executer(robot &r, const terrain &t)=0;
 
 };
 
