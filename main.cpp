@@ -2,6 +2,7 @@
 #include "position.h"
 #include "Terrain.h"
 #include "robot.h"
+#include "algorithmemaindroite.h"
 
 using namespace std;
 
@@ -37,6 +38,11 @@ void testterrain() {
     position depart = ter.getCaseDepart();
      position arrivee = ter.getCaseArrivee();
 
+     //ajouter par Antho pour tester l'algorithmeMainDroite
+     robot r(depart,'E');
+     algorithmeMainDroite a;
+     a.executer(r,ter);
+
         std::cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
         std::cout << "Position d'arrivée : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
     } else {
@@ -51,5 +57,5 @@ void testterrain() {
 
 int main()
 {
-
+    testterrain();
 }
