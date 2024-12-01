@@ -13,10 +13,9 @@ class robot {
         position d_position;
         char d_direction;
         //vector<robotObservateur> d_observateurs;
-        //terrain d_terrain;
 
     public:
-        //robot(const terrain* &t, const position &pos, char direction);
+        robot(const position &pos, char direction);
         position getPositionActuelle() const;
         char getDirection() const;
         //bool detecterObstacleAvant(const terrain& terrain);
