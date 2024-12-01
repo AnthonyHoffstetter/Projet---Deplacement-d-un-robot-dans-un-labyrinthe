@@ -1,4 +1,4 @@
-#include "Terrain.h"
+#include "terrain.h"
 #include <fstream>
 #include <iostream>
 
@@ -8,6 +8,7 @@ terrain::terrain()
 {
     d_terrain.clear(); // Initialise la grille comme vide
 }
+
 bool terrain::chargerDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier);
     if (!fichier.is_open()) {

@@ -6,10 +6,10 @@
 #include <iostream>
 #include "position.h"
 
-class Terrain {
+class terrain {
 public:
 
-    Terrain();
+    terrain();
 
     bool chargerDepuisFichier(const std::string& nomFichier);
     void afficher() const;

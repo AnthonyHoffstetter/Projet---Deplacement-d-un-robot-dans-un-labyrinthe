@@ -23,7 +23,7 @@ void testPosition()
 void testterrain() {
 
 // Création d'un objet Terrain
-    Terrain ter{};
+    terrain ter{};
 
     // Chargement du terrain depuis le fichier "test.txt"
     if (ter.chargerDepuisFichier("./test.txt")) {
