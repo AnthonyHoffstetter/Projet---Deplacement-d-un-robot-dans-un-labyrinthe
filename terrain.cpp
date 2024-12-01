@@ -1,17 +1,21 @@
-#include "terrain.h"
+#include "Terrain.h"
 #include <fstream>
 #include <iostream>
 
 using namespace std;
 
+Terrain::Terrain()
+{
+    d_terrain.clear(); // Initialise la grille comme vide
+}
 bool Terrain::chargerDepuisFichier(const string& nomFichier) {
-    ifstream fichier(nomFichier); 
+    ifstream fichier(nomFichier);
     if (!fichier.is_open()) {
         cerr << "Erreur : Impossible d'ouvrir le fichier " << nomFichier << endl;
         return false;
     }
 
-    d_terrain.clear(); 
+    d_terrain.clear();
     string ligne;
     int y = 0;
 
@@ -21,22 +25,21 @@ bool Terrain::chargerDepuisFichier(const string& nomFichier) {
             char c = ligne[x];
             ligneTerrain.push_back(c);
 
-            if (c == 'D') { 
-                d_depart.setPosition(x, y);
-            } else if (c == 'A') { 
-                d_arrivee.setPosition(x, y);
+            if (c == 'D') {
+                d_depart.setPosition(x,y);
+            } else if (c == 'A') {
+                d_arrivee.setPosition(x,y);
             }
         }
         d_terrain.push_back(ligneTerrain);
         ++y;
     }
 
-    d_longueur = d_terrain.size();                
-    d_largeur = d_terrain.empty() ? 0 : d_terrain[0].size(); 
+    d_longueur = d_terrain.size();
+    d_largeur = d_terrain.empty() ? 0 : d_terrain[0].size();
     fichier.close();
     return true;
 }
-
 
 void Terrain::afficher() const {
     for (const auto& ligne : d_terrain) {
@@ -68,7 +71,7 @@ bool Terrain::estLibre(const position& sp) const {
     int y = sp.getY();
 
     if (x < 0 || x >= d_largeur || y < 0 || y >= d_longueur) {
-        return false; 
+        return false;
     }
 
     return d_terrain[y][x] == '.' || d_terrain[y][x] == 'A';
