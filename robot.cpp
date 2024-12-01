@@ -2,7 +2,7 @@
 #include <iostream>
 
 robot::robot(const position &pos, char direction):
-    d_position{0,0},d_direction{'N'}
+    d_position{pos},d_direction{direction}
 {}
 
 position robot::getPositionActuelle() const
