@@ -4,11 +4,11 @@
 
 using namespace std;
 
-Terrain::Terrain()
+terrain::terrain()
 {
     d_terrain.clear(); // Initialise la grille comme vide
 }
-bool Terrain::chargerDepuisFichier(const string& nomFichier) {
+bool terrain::chargerDepuisFichier(const string& nomFichier) {
     ifstream fichier(nomFichier);
     if (!fichier.is_open()) {
         cerr << "Erreur : Impossible d'ouvrir le fichier " << nomFichier << endl;
@@ -41,7 +41,7 @@ bool Terrain::chargerDepuisFichier(const string& nomFichier) {
     return true;
 }
 
-void Terrain::afficher() const {
+void terrain::afficher() const {
     for (const auto& ligne : d_terrain) {
         for (char c : ligne) {
             cout << c;
@@ -50,23 +50,23 @@ void Terrain::afficher() const {
     }
 }
 
-int Terrain::getLargeur() const {
+int terrain::getLargeur() const {
     return d_largeur;
 }
 
-int Terrain::getLongueur() const {
+int terrain::getLongueur() const {
     return d_longueur;
 }
 
-position Terrain::getCaseDepart() const {
+position terrain::getCaseDepart() const {
     return d_depart;
 }
 
-position Terrain::getCaseArrivee() const {
+position terrain::getCaseArrivee() const {
     return d_arrivee;
 }
 
-bool Terrain::estLibre(const position& sp) const {
+bool terrain::estLibre(const position& sp) const {
     int x = sp.getX();
     int y = sp.getY();
 

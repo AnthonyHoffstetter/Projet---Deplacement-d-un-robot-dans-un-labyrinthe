@@ -12,7 +12,6 @@ public:
     Terrain();
 
     bool chargerDepuisFichier(const std::string& nomFichier);
-
     void afficher() const;
 
     int getLargeur() const;
@@ -23,7 +22,7 @@ public:
 
     bool estLibre(const position& sp) const;
 
-private:
+    private:
     std::vector<std::vector<char>> d_terrain;
     int d_largeur;
     int d_longueur;
@@ -32,4 +31,3 @@ private:
 };
 
 #endif
-
