@@ -1,5 +1,6 @@
 #include <iostream>
 #include "position.h"
+#include "Terrain.h"
 
 using namespace std;
 
@@ -17,7 +18,34 @@ void testPosition()
         cout<<"p1 et p2 sont differents"<<endl;
 }
 
+
+void testterrain() {
+
+// Création d'un objet Terrain
+    Terrain ter{};
+
+    // Chargement du terrain depuis le fichier "test.txt"
+    if (ter.chargerDepuisFichier("./test.txt")) {
+        // Affichage du terrain après le chargement
+        std::cout << "Terrain chargé avec succès :" << std::endl;
+        ter.afficher();
+
+        // Affichage des coordonnées de départ et d'arrivée
+
+    position depart = ter.getCaseDepart();
+     position arrivee = ter.getCaseArrivee();
+
+        std::cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
+        std::cout << "Position d'arrivée : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
+    } else {
+        // Gestion des erreurs si le fichier n'est pas trouvé ou invalide
+        std::cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << std::endl;
+    }
+
+
+
+}
+
 int main()
 {
-    //testPosition();
 }
