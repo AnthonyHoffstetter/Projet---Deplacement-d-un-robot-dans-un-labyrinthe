@@ -10,3 +10,6 @@ obj/Debug/terrain.o
 obj/Debug/algorithme.o
 obj/Debug/algorithmemaindroite.o
 obj/Debug/algorithmepledge.o
+.objs/algorithmemaindroite.o
+/.objs
+/obj
