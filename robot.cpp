@@ -10,7 +10,6 @@ position robot::getPositionActuelle() const
     return d_position;
 }
 
-
 char robot::getDirection() const
 {
     return d_direction;
