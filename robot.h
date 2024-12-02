@@ -7,7 +7,6 @@
 
 using namespace std;
 
-/**Faire les tests unitaires de cette classe */
 
 class robot {
     private:
