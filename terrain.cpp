@@ -75,5 +75,5 @@ bool terrain::estLibre(const position& sp) const {
         return false;
     }
 
-    return d_terrain[y][x] == '.' || d_terrain[y][x] == 'A';
+    return d_terrain[y][x] == '.' || d_terrain[y][x] == 'A' || d_terrain[y][x] == 'D';
 }
