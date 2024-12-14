@@ -4,7 +4,7 @@
 #include "robot.h"
 #include "algorithmemaindroite.h"
 
-using namespace std;
+
 
 /**Transformer cette fonction en test unitaire */
 void testPosition()
