@@ -7,7 +7,7 @@
 class compteur_deplacement {
 public:
     compteur_deplacement();
-    void compterDeplacement(const robot& r);
+    void compterDeplacement();
     int getNombreDeplacements() const;
 
 private:
