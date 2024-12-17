@@ -3,8 +3,9 @@
 
 compteur_deplacement::compteur_deplacement() : d_nombreDeplacements(0) {}
 
-void compteur_deplacement::compterDeplacement(const robot& r) {
-    // On suppose que chaque appel à cette méthode signifie que le robot se déplace
+
+void compteur_deplacement::update(const position& nouvellePosition, char nouvelleDirection) {
+
     d_nombreDeplacements++;
 
 
