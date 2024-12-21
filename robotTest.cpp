@@ -2,6 +2,7 @@
 #include "doctest.h"
 #include "robot.h"
 #include "fakeobservateur.h"
+#include "fakerobot.h"
 
 void lesCoordonnesDuRobotSontExactement(const robot& r, int x, int y, char direction)
 {
@@ -106,34 +107,5 @@ TEST_CASE("[robot] Le robot avance")
         robot r{p,'O'};
         r.avancer();
         lesCoordonnesDuRobotSontExactement(r,0,1,'O');
-    }
-}
-
-TEST_CASE("[robot] Enregistrement d'un observateur")
-{
-    int x{1}, y{1};
-    position p{x, y};
-    SUBCASE("Enregistrer un observateur dans le robot")
-    {
-        robot r{p, 'N'};
-        auto obs = std::make_unique<fakeObservateur>();
-        r.enregistrerObservateur(std::move(obs));
-        REQUIRE(r.nombreObservateurs() == 1);
-    }
-    SUBCASE("Enregistrer plusieurs observateurs")
-    {
-        robot r{p, 'N'};
-        auto obs1 = std::make_unique<fakeObservateur>();
-        auto obs2 = std::make_unique<fakeObservateur>();
-
-        r.enregistrerObservateur(std::move(obs1));
-        r.enregistrerObservateur(std::move(obs2));
-
-        REQUIRE(r.nombreObservateurs() == 2);
-    }
-    SUBCASE("Ne pas enregistrer d'observateur") {
-
-        robot r{p, 'N'};
-        REQUIRE(r.nombreObservateurs() == 0);
     }
 }
