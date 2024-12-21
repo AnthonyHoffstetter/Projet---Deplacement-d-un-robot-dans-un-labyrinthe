@@ -90,10 +90,7 @@ void robot::tournerDroite()
 
 bool robot::detecterObstacleDevant(const terrain& terrain)
 {
-    // Obtenir la position actuelle du robot
     position posDevant{};
-
-    // Calculer la position devant le robot en fonction de sa direction
     switch (d_direction)
     {
         case 'N':
@@ -116,10 +113,7 @@ bool robot::detecterObstacleDevant(const terrain& terrain)
 
 bool robot::detecterObstacleDroite(const terrain& terrain)
 {
-    // Obtenir la position actuelle du robot
     position posDroite{};
-
-    // Calculer la position devant le robot en fonction de sa direction
     switch (d_direction)
     {
         case 'N':
