@@ -20,6 +20,7 @@ class robot {
         robot(const position &pos, char direction);
         position getPositionActuelle() const;
         char getDirection() const;
+        int nombreObservateurs() const;
         bool detecterObstacleDevant(const terrain& terrain);
         bool detecterObstacleDroite(const terrain& terrain);
         void enregistrerObservateur(std::unique_ptr<observateur> obs);
