@@ -4,14 +4,9 @@
 compteur_deplacement::compteur_deplacement() : d_nombreDeplacements(0) {}
 
 
-void compteur_deplacement::update(const position& nouvellePosition, char nouvelleDirection) {
-
+void compteur_deplacement::update(const robot &r)
+{
     d_nombreDeplacements++;
-
-
-    std::cout << "Déplacement " << d_nombreDeplacements << " : Position ("
-              << nouvellePosition.getX() << ", " << nouvellePosition.getY()
-              << "), Direction : " << nouvelleDirection << std::endl;
 }
 
 
@@ -19,6 +14,7 @@ int compteur_deplacement::getNombreDeplacements() const {
     return d_nombreDeplacements;
 }
 
+//inutile je pense (Antho)
 void compteur_deplacement::afficherCompteur() const {
     std::cout << "Nombre total de déplacements : " << d_nombreDeplacements << std::endl;
 }

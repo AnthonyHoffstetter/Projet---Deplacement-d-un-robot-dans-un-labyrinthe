@@ -14,7 +14,7 @@ public:
     compteur_deplacement();
 
 
-    void update(const position& nouvellePosition, char nouvelleDirection) override;
+    void update(const robot &r) override;
 
 
     int getNombreDeplacements() const;
