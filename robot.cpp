@@ -15,14 +15,18 @@ char robot::getDirection() const
     return d_direction;
 }
 
+void robot::enregistrerObservateur(std::unique_ptr<observateur> obs)
+{
+        d_observateurs.push_back(std::move(obs));
+}
 
-/*void robot::notifierObservateurs()
+void robot::notifierObservateurs()
 {
     for(int i=0;i<d_observateurs.size();i++)
     {
-        d_observateurs[i].update();
+        d_observateurs[i]->update(*this);
     }
-}*/
+}
 
 
 void robot::avancer()
@@ -41,6 +45,7 @@ void robot::avancer()
             d_position.setPosition(d_position.getX()-1, d_position.getY());
             break;
     }
+    notifierObservateurs();
 }
 
 
@@ -60,6 +65,7 @@ void robot::tournerGauche()
             d_direction='S';
             break;
     }
+    notifierObservateurs();
 }
 
 
@@ -79,6 +85,7 @@ void robot::tournerDroite()
             d_direction='N';
             break;
     }
+    notifierObservateurs();
 }
 
 bool robot::detecterObstacleDevant(const terrain& terrain)

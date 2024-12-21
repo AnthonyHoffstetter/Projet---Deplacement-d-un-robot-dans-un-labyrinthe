@@ -4,6 +4,8 @@
 #include "position.h"
 #include <vector>
 #include "terrain.h"
+#include "observateur.h"
+#include <memory>
 
 using namespace std;
 
@@ -12,7 +14,7 @@ class robot {
     private:
         position d_position;
         char d_direction;
-        //vector<robotObservateur> d_observateurs;
+        vector<unique_ptr<observateur>> d_observateurs;
 
     public:
         robot(const position &pos, char direction);
@@ -20,7 +22,7 @@ class robot {
         char getDirection() const;
         bool detecterObstacleDevant(const terrain& terrain);
         bool detecterObstacleDroite(const terrain& terrain);
-        //void enregistrerObservateur(const robotObservateur &obs);
+        void enregistrerObservateur(std::unique_ptr<observateur> obs);
         void notifierObservateurs();
         void avancer();
         void tournerGauche();
