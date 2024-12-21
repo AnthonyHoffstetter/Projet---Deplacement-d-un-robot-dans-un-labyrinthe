@@ -3,12 +3,14 @@
 
 #include "position.h"
 
+class robot;
+
 
 class observateur {
 public:
     virtual ~observateur() = default;
 
-    virtual void update(const position& nouvellePosition, char nouvelleDirection) = 0;
+    virtual void update(const robot &r) = 0;
 };
 
 #endif // OBSERVATEUR_H
