@@ -1,8 +1,6 @@
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "doctest.h"
 #include "robot.h"
-#include "fakeobservateur.h"
-#include "fakerobot.h"
 
 void lesCoordonnesDuRobotSontExactement(const robot& r, int x, int y, char direction)
 {
