@@ -21,6 +21,5 @@ void algorithmeMainDroite::executer(robot& r,const terrain& ter)
         {
             r.tournerGauche();
         }
-        cout<<"position du robot : "<<r.getPositionActuelle().getX()<<','<<r.getPositionActuelle().getY()<<endl;
     }
 }
