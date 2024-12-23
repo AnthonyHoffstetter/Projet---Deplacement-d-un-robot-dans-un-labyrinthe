@@ -3,6 +3,8 @@
 #include "Terrain.h"
 #include "robot.h"
 #include "algorithmemaindroite.h"
+#include "compteur_deplacement.h"
+
 
 using namespace std;
 
@@ -26,6 +28,8 @@ void testterrain() {
 
 // Création d'un objet Terrain
     terrain ter{};
+    compteur_deplacement* compteur = new compteur_deplacement();
+
 
     // Chargement du terrain depuis le fichier "test.txt"
     if (ter.chargerDepuisFichier("./test.txt")) {
@@ -40,11 +44,13 @@ void testterrain() {
 
      //ajouter par Antho pour tester l'algorithmeMainDroite
      robot r(depart,'E');
+     r.enregistrerObservateur(std::unique_ptr<compteur_deplacement>(compteur));
      algorithmeMainDroite a;
      a.executer(r,ter);
 
         std::cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
         std::cout << "Position d'arrivée : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
+        std::cout << "Nombre de deplacement" << compteur->getNombreDeplacements();
     } else {
         // Gestion des erreurs si le fichier n'est pas trouvé ou invalide
         std::cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << std::endl;
