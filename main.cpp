@@ -4,6 +4,7 @@
 #include "robot.h"
 #include "algorithmemaindroite.h"
 #include "compteur_deplacement.h"
+#include "afficheurrobot.h"
 
 
 using namespace std;
@@ -29,12 +30,13 @@ void testterrain() {
 // Création d'un objet Terrain
     terrain ter{};
     compteur_deplacement* compteur = new compteur_deplacement();
+    afficheurRobot* afficheur = new afficheurRobot();
 
 
     // Chargement du terrain depuis le fichier "test.txt"
     if (ter.chargerDepuisFichier("./test.txt")) {
         // Affichage du terrain après le chargement
-        std::cout << "Terrain chargé avec succès :" << std::endl;
+        //std::cout << "Terrain chargé avec succès :" << std::endl;
         ter.afficher();
 
         // Affichage des coordonnées de départ et d'arrivée
@@ -43,8 +45,9 @@ void testterrain() {
      position arrivee = ter.getCaseArrivee();
 
      //ajouter par Antho pour tester l'algorithmeMainDroite
-     robot r(depart,'E');
+     robot r(depart,'v');
      r.enregistrerObservateur(std::unique_ptr<compteur_deplacement>(compteur));
+     r.enregistrerObservateur(std::unique_ptr<afficheurRobot>(afficheur));
      algorithmeMainDroite a;
      a.executer(r,ter);
 
