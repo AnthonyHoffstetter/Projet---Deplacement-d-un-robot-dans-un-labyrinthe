@@ -10,6 +10,12 @@ position robot::getPositionActuelle() const
     return d_position;
 }
 
+position robot::getAnciennePosition() const
+{
+    return d_anciennePosition;
+}
+
+
 char robot::getDirection() const
 {
     return d_direction;
@@ -31,17 +37,18 @@ void robot::notifierObservateurs()
 
 void robot::avancer()
 {
+    d_anciennePosition=d_position;
     switch (d_direction) {
-        case 'N':
+        case '^':
             d_position.setPosition(d_position.getX(), d_position.getY()-1);
             break;
-        case 'E':
+        case '>':
             d_position.setPosition(d_position.getX()+1, d_position.getY());
             break;
-        case 'S':
+        case 'v':
             d_position.setPosition(d_position.getX(), d_position.getY()+1);
             break;
-        case 'O':
+        case '<':
             d_position.setPosition(d_position.getX()-1, d_position.getY());
             break;
     }
@@ -52,17 +59,17 @@ void robot::avancer()
 void robot::tournerGauche()
 {
     switch (d_direction) {
-        case 'N':
-            d_direction='O';
+        case '^':
+            d_direction='<';
             break;
-        case 'E':
-            d_direction='N';
+        case '>':
+            d_direction='^';
             break;
-        case 'S':
-            d_direction='E';
+        case 'v':
+            d_direction='>';
             break;
-        case 'O':
-            d_direction='S';
+        case '<':
+            d_direction='v';
             break;
     }
     notifierObservateurs();
@@ -72,17 +79,17 @@ void robot::tournerGauche()
 void robot::tournerDroite()
 {
     switch (d_direction) {
-        case 'N':
-            d_direction='E';
+        case '^':
+            d_direction='>';
             break;
-        case 'E':
-            d_direction='S';
+        case '>':
+            d_direction='v';
             break;
-        case 'S':
-            d_direction='O';
+        case 'v':
+            d_direction='<';
             break;
-        case 'O':
-            d_direction='N';
+        case '<':
+            d_direction='^';
             break;
     }
     notifierObservateurs();
@@ -93,16 +100,16 @@ bool robot::detecterObstacleDevant(const terrain& terrain)
     position posDevant{};
     switch (d_direction)
     {
-        case 'N':
+        case '^':
             posDevant.setPosition(d_position.getX(), d_position.getY()-1);
             break;
-        case 'E':
+        case '>':
             posDevant.setPosition(d_position.getX()+1, d_position.getY());
             break;
-        case 'S':
+        case 'v':
             posDevant.setPosition(d_position.getX(), d_position.getY()+1);
             break;
-        case 'O':
+        case '<':
             posDevant.setPosition(d_position.getX()-1, d_position.getY());
             break;
     }
@@ -116,20 +123,19 @@ bool robot::detecterObstacleDroite(const terrain& terrain)
     position posDroite{};
     switch (d_direction)
     {
-        case 'N':
+        case '^':
             posDroite.setPosition(d_position.getX()+1, d_position.getY());
             break;
-        case 'E':
+        case '>':
             posDroite.setPosition(d_position.getX(), d_position.getY()+1);
             break;
-        case 'S':
+        case 'v':
             posDroite.setPosition(d_position.getX()-1, d_position.getY());
             break;
-        case 'O':
+        case '<':
             posDroite.setPosition(d_position.getX(), d_position.getY()-1);
             break;
     }
 
     return !terrain.estLibre(posDroite);
 }
-
