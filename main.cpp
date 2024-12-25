@@ -7,12 +7,8 @@
 #include "compteur_deplacement.h"
 #include "afficheurrobot.h"
 #include "calcul_temps.h"
-<<<<<<< HEAD
-#include "compteur_rotation.h"  // Inclure le fichier d'en-tête du compteur de rotations
-=======
+#include "compteur_rotation.h" 
 #include "programme.h"
-
->>>>>>> 07545b185847e849f19fa047b35de32114765b72
 
 using namespace std;
 
