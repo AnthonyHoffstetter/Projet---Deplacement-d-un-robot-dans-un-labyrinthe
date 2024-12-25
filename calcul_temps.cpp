@@ -1,0 +1,22 @@
+#include "calcul_temps.h"
+
+calcul_temps::calcul_temps() {
+    d_debut = std::chrono::steady_clock::now();
+    d_dernierUpdate = d_debut;
+}
+
+void calcul_temps::update(const robot &r) {
+    auto maintenant = std::chrono::steady_clock::now();
+    auto tempsEcoule = std::chrono::duration_cast<std::chrono::milliseconds>(maintenant - d_dernierUpdate).count();
+
+    d_dernierUpdate = maintenant;
+
+
+}
+
+void calcul_temps::afficherTempsTotal() const {
+    auto maintenant = std::chrono::steady_clock::now();
+    auto tempsTotal = std::chrono::duration_cast<std::chrono::milliseconds>(maintenant - d_debut).count();
+
+    std::cout << "Temps total écoulé : " << tempsTotal << " ms" << std::endl;
+}

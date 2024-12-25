@@ -5,6 +5,7 @@
 #include "algorithmemaindroite.h"
 #include "compteur_deplacement.h"
 #include "afficheurrobot.h"
+#include "calcul_temps.h"
 
 
 using namespace std;
@@ -26,42 +27,51 @@ void testPosition()
 
 /**Transformer cette fonction en test unitaire */
 void testterrain() {
-
-// Création d'un objet Terrain
+    // Création d'un objet Terrain
     terrain ter{};
     compteur_deplacement* compteur = new compteur_deplacement();
     afficheurRobot* afficheur = new afficheurRobot();
-
+    calcul_temps* timer = new calcul_temps(); // Observateur pour mesurer le temps
 
     // Chargement du terrain depuis le fichier "test.txt"
     if (ter.chargerDepuisFichier("./test.txt")) {
-        // Affichage du terrain après le chargement
-        //std::cout << "Terrain chargé avec succès :" << std::endl;
+        // Affichage du terrain
+        std::cout << "=== Terrain chargé ===" << std::endl;
         ter.afficher();
 
+        // Ajout d'un espace après l'affichage du labyrinthe
+        std::cout << "\n\n";
+
         // Affichage des coordonnées de départ et d'arrivée
+        position depart = ter.getCaseDepart();
+        position arrivee = ter.getCaseArrivee();
 
-    position depart = ter.getCaseDepart();
-     position arrivee = ter.getCaseArrivee();
+        // Initialisation du robot
+        robot r(depart, 'v');
+        r.enregistrerObservateur(std::unique_ptr<compteur_deplacement>(compteur));
+        r.enregistrerObservateur(std::unique_ptr<afficheurRobot>(afficheur));
+        r.enregistrerObservateur(std::unique_ptr<calcul_temps>(timer)); // Enregistrement du calcul_temps
 
-     //ajouter par Antho pour tester l'algorithmeMainDroite
-     robot r(depart,'v');
-     r.enregistrerObservateur(std::unique_ptr<compteur_deplacement>(compteur));
-     r.enregistrerObservateur(std::unique_ptr<afficheurRobot>(afficheur));
-     algorithmeMainDroite a;
-     a.executer(r,ter);
+        // Exécution de l'algorithme de la main droite
+        algorithmeMainDroite a;
+        a.executer(r, ter);
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
 
+        // Séparateur pour les statistiques
+        std::cout << "=== Statistiques ===" << std::endl;
+
+        // Affichage des statistiques
         std::cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
         std::cout << "Position d'arrivée : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
-        std::cout << "Nombre de deplacement" << compteur->getNombreDeplacements();
+        std::cout << "Nombre de déplacements : " << compteur->getNombreDeplacements() << std::endl;
+        timer->afficherTempsTotal(); // Afficher le temps total écoulé
     } else {
-        // Gestion des erreurs si le fichier n'est pas trouvé ou invalide
         std::cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << std::endl;
     }
-
-
-
 }
+
 
 
 int main()
