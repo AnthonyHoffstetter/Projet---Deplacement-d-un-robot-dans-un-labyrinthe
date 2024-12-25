@@ -8,7 +8,10 @@
 #include "afficheurRobot.h"
 #include "algorithmeMainDroite.h"
 #include"algorithmePledge.h"
+#include "calcul_temps.h"
+#include "compteur_rotation.h"
 
+using namespace std ;
 // Classe principale du programme
 class programme {
 public:
@@ -28,8 +31,9 @@ private:
     // Attributs
     bool terrainCharge; // Indique si le terrain a été chargé
     terrain ter;        // Objet terrain
-    std::unique_ptr<compteur_deplacement> compteur; // Observateur pour compter les déplacements
-    std::unique_ptr<afficheurRobot> afficheur; // Observateur pour afficher les déplacements
+    unique_ptr<compteur_deplacement> compteur;
+
+    unique_ptr<afficheurRobot> afficheur; // Observateur pour afficher les déplacements
 };
 
 
