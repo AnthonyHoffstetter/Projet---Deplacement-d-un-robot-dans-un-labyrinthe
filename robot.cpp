@@ -10,95 +10,106 @@ position robot::getPositionActuelle() const
     return d_position;
 }
 
+position robot::getAnciennePosition() const
+{
+    return d_anciennePosition;
+}
+
+
 char robot::getDirection() const
 {
     return d_direction;
 }
 
+void robot::enregistrerObservateur(std::unique_ptr<observateur> obs)
+{
+        d_observateurs.push_back(std::move(obs));
+}
 
-/*void robot::notifierObservateurs()
+void robot::notifierObservateurs()
 {
     for(int i=0;i<d_observateurs.size();i++)
     {
-        d_observateurs[i].update();
+        d_observateurs[i]->update(*this);
     }
-}*/
+}
 
 
 void robot::avancer()
 {
+    d_anciennePosition=d_position;
     switch (d_direction) {
-        case 'N':
+        case '^':
             d_position.setPosition(d_position.getX(), d_position.getY()-1);
             break;
-        case 'E':
+        case '>':
             d_position.setPosition(d_position.getX()+1, d_position.getY());
             break;
-        case 'S':
+        case 'v':
             d_position.setPosition(d_position.getX(), d_position.getY()+1);
             break;
-        case 'O':
+        case '<':
             d_position.setPosition(d_position.getX()-1, d_position.getY());
             break;
     }
+    notifierObservateurs();
 }
 
 
 void robot::tournerGauche()
 {
     switch (d_direction) {
-        case 'N':
-            d_direction='O';
+        case '^':
+            d_direction='<';
             break;
-        case 'E':
-            d_direction='N';
+        case '>':
+            d_direction='^';
             break;
-        case 'S':
-            d_direction='E';
+        case 'v':
+            d_direction='>';
             break;
-        case 'O':
-            d_direction='S';
+        case '<':
+            d_direction='v';
             break;
     }
+    notifierObservateurs();
 }
 
 
 void robot::tournerDroite()
 {
     switch (d_direction) {
-        case 'N':
-            d_direction='E';
+        case '^':
+            d_direction='>';
             break;
-        case 'E':
-            d_direction='S';
+        case '>':
+            d_direction='v';
             break;
-        case 'S':
-            d_direction='O';
+        case 'v':
+            d_direction='<';
             break;
-        case 'O':
-            d_direction='N';
+        case '<':
+            d_direction='^';
             break;
     }
+    notifierObservateurs();
 }
 
 bool robot::detecterObstacleDevant(const terrain& terrain)
 {
-    // Obtenir la position actuelle du robot
     position posDevant{};
-
-    // Calculer la position devant le robot en fonction de sa direction
     switch (d_direction)
     {
-        case 'N':
+        case '^':
             posDevant.setPosition(d_position.getX(), d_position.getY()-1);
             break;
-        case 'E':
+        case '>':
             posDevant.setPosition(d_position.getX()+1, d_position.getY());
             break;
-        case 'S':
+        case 'v':
             posDevant.setPosition(d_position.getX(), d_position.getY()+1);
             break;
-        case 'O':
+        case '<':
             posDevant.setPosition(d_position.getX()-1, d_position.getY());
             break;
     }
@@ -109,26 +120,22 @@ bool robot::detecterObstacleDevant(const terrain& terrain)
 
 bool robot::detecterObstacleDroite(const terrain& terrain)
 {
-    // Obtenir la position actuelle du robot
     position posDroite{};
-
-    // Calculer la position devant le robot en fonction de sa direction
     switch (d_direction)
     {
-        case 'N':
+        case '^':
             posDroite.setPosition(d_position.getX()+1, d_position.getY());
             break;
-        case 'E':
+        case '>':
             posDroite.setPosition(d_position.getX(), d_position.getY()+1);
             break;
-        case 'S':
+        case 'v':
             posDroite.setPosition(d_position.getX()-1, d_position.getY());
             break;
-        case 'O':
+        case '<':
             posDroite.setPosition(d_position.getX(), d_position.getY()-1);
             break;
     }
 
     return !terrain.estLibre(posDroite);
 }
-
