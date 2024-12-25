@@ -12,7 +12,7 @@ programme::programme() : terrainCharge(false) {
 // Méthode d'initialisation
 void programme::initialiser() {
     if (ter.chargerDepuisFichier("./test.txt")) {
-        cout << "Terrain chargé avec succès :" << endl;
+        cout << "Terrain charge avec succes :" << endl<<endl;
         ter.afficher();
         terrainCharge = true;
     } else {
@@ -25,7 +25,7 @@ void programme::initialiser() {
 void programme::executerChoixAlgorithme() {
     initialiser();
     if (!terrainCharge) {
-        cerr << "Erreur : Le terrain n'a pas été chargé. Initialisez d'abord le programme." << endl;
+        cerr << "Erreur : Le terrain n'a pas ete charge. Initialisez d'abord le programme." << endl;
         return;
     }
 
@@ -73,9 +73,9 @@ void programme::executerChoixAlgorithme() {
     cout<< endl;
     cout<< endl;
     cout<< endl;
-    cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << endl;
+    cout << "Position de depart : (" << depart.getX() << ", " << depart.getY() << ")" << endl;
     cout << "Position d'arrivee : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << endl;
-    cout << "Nombre de déplacements : " << compteur->getNombreDeplacements() << endl;
+    cout << "Nombre de deplacements : " << compteur->getNombreDeplacements() << endl;
     std::cout << "Nombre de rotations : " << compteurRot->getNombreRotations() << std::endl;
     timer->afficherTempsTotal();
     cout<< endl;
@@ -91,6 +91,6 @@ void programme::choisirAlgorithme(int choix, robot& r, terrain& ter) {
         algorithmePledge algo;
         algo.executer(r, ter);
     } else {
-        cerr << "Choix invalide. Aucun algorithme exécuté." << endl;
+        cerr << "Choix invalide. Aucun algorithme execute." << endl;
     }
 }

@@ -18,5 +18,5 @@ void calcul_temps::afficherTempsTotal() const {
     auto maintenant = std::chrono::steady_clock::now();
     auto tempsTotal = std::chrono::duration_cast<std::chrono::milliseconds>(maintenant - d_debut).count();
 
-    std::cout << "Temps total écoulé : " << tempsTotal << " ms" << std::endl;
+    std::cout << "Temps total ecoule : " << tempsTotal << " ms" << std::endl;
 }

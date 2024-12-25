@@ -7,7 +7,7 @@
 #include "compteur_deplacement.h"
 #include "afficheurrobot.h"
 #include "calcul_temps.h"
-#include "compteur_rotation.h" 
+#include "compteur_rotation.h"
 #include "programme.h"
 
 using namespace std;
@@ -67,9 +67,9 @@ void testterrain() {
         std::cout << "=== Statistiques ===" << std::endl;
 
         // Affichage des statistiques
-        std::cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
-        std::cout << "Position d'arrivée : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
-        std::cout << "Nombre de déplacements : " << compteur->getNombreDeplacements() << std::endl;
+        std::cout << "Position de depart : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
+        std::cout << "Position d'arrivee : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
+        std::cout << "Nombre de deplacements : " << compteur->getNombreDeplacements() << std::endl;
         std::cout << "Nombre de rotations : " << compteurRot->getNombreRotations() << std::endl; // Affichage du nombre de rotations
         timer->afficherTempsTotal(); // Afficher le temps total écoulé
     } else {
