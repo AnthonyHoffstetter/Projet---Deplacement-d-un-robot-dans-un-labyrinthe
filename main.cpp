@@ -3,10 +3,11 @@
 #include "Terrain.h"
 #include "robot.h"
 #include "algorithmemaindroite.h"
+#include "algorithmepledge.h"
 #include "compteur_deplacement.h"
 #include "afficheurrobot.h"
 #include "calcul_temps.h"
-
+#include "compteur_rotation.h"  // Inclure le fichier d'en-tête du compteur de rotations
 
 using namespace std;
 
@@ -16,13 +17,13 @@ void testPosition()
     position p1(2,5);
     position p2(3,7);
     position p3(2,5);
-    cout<<"p1.x = "<<p1.getX()<<" et p1.y = "<<p1.getY()<<endl;
-    if(p1==p2)
-        cout<<"p1 et p2 sont egaux"<<endl;
-    if(p1==p3)
-        cout<<"p1 et p3 sont egaux"<<endl;
-    if(p1!=p2)
-        cout<<"p1 et p2 sont differents"<<endl;
+    cout << "p1.x = " << p1.getX() << " et p1.y = " << p1.getY() << endl;
+    if (p1 == p2)
+        cout << "p1 et p2 sont égaux" << endl;
+    if (p1 == p3)
+        cout << "p1 et p3 sont égaux" << endl;
+    if (p1 != p2)
+        cout << "p1 et p2 sont différents" << endl;
 }
 
 /**Transformer cette fonction en test unitaire */
@@ -32,6 +33,7 @@ void testterrain() {
     compteur_deplacement* compteur = new compteur_deplacement();
     afficheurRobot* afficheur = new afficheurRobot();
     calcul_temps* timer = new calcul_temps(); // Observateur pour mesurer le temps
+    compteur_rotation* compteurRot = new compteur_rotation(); // Observateur pour le nombre de rotations
 
     // Chargement du terrain depuis le fichier "test.txt"
     if (ter.chargerDepuisFichier("./test.txt")) {
@@ -51,9 +53,10 @@ void testterrain() {
         r.enregistrerObservateur(std::unique_ptr<compteur_deplacement>(compteur));
         r.enregistrerObservateur(std::unique_ptr<afficheurRobot>(afficheur));
         r.enregistrerObservateur(std::unique_ptr<calcul_temps>(timer)); // Enregistrement du calcul_temps
+        r.enregistrerObservateur(std::unique_ptr<compteur_rotation>(compteurRot)); // Enregistrement du compteur de rotations
 
         // Exécution de l'algorithme de la main droite
-        algorithmeMainDroite a;
+        algorithmePledge a;
         a.executer(r, ter);
         std::cout << std::endl;
         std::cout << std::endl;
@@ -66,13 +69,12 @@ void testterrain() {
         std::cout << "Position de départ : (" << depart.getX() << ", " << depart.getY() << ")" << std::endl;
         std::cout << "Position d'arrivée : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << std::endl;
         std::cout << "Nombre de déplacements : " << compteur->getNombreDeplacements() << std::endl;
+        std::cout << "Nombre de rotations : " << compteurRot->getNombreRotations() << std::endl; // Affichage du nombre de rotations
         timer->afficherTempsTotal(); // Afficher le temps total écoulé
     } else {
         std::cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << std::endl;
     }
 }
-
-
 
 int main()
 {
