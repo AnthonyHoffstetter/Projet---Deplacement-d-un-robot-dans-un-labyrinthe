@@ -45,6 +45,5 @@ void algorithmePledge::executer(robot &r, const terrain &t)
         }
     }
 
-    // Message de fin
-    cout << "Le robot a atteint la sortie avec succ�s !" << endl;
+  
 }
