@@ -6,6 +6,7 @@
 #include "compteur_deplacement.h"
 #include "afficheurrobot.h"
 #include "calcul_temps.h"
+#include "programme.h"
 
 
 using namespace std;
@@ -76,5 +77,9 @@ void testterrain() {
 
 int main()
 {
-    testterrain();
+    //testterrain();
+
+    programme pro;
+    pro.executerChoixAlgorithme();
+
 }
