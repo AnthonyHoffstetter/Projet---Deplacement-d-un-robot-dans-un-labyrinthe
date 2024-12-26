@@ -26,54 +26,54 @@ TEST_CASE("[robot] les changements de direction fonctionnent")
     {
         SUBCASE("Depuis la direction Nord")
         {
-            robot r{p,'N'};
+            robot r{p,'^'};
             r.tournerGauche();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'O');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'<');
         }
         SUBCASE("Depuis la direction Ouest")
         {
-            robot r{p,'O'};
+            robot r{p,'<'};
             r.tournerGauche();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'S');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'v');
         }
         SUBCASE("Depuis la direction Sud")
         {
-            robot r{p,'S'};
+            robot r{p,'v'};
             r.tournerGauche();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'E');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'>');
         }
         SUBCASE("Depuis la direction Est")
         {
-            robot r{p,'E'};
+            robot r{p,'>'};
             r.tournerGauche();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'N');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'^');
         }
     }
     SUBCASE("Tourner a droite")
     {
         SUBCASE("Depuis la direction Nord")
         {
-            robot r{p,'N'};
+            robot r{p,'^'};
             r.tournerDroite();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'E');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'>');
         }
         SUBCASE("Depuis la direction Est")
         {
-            robot r{p,'E'};
+            robot r{p,'>'};
             r.tournerDroite();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'S');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'v');
         }
         SUBCASE("Depuis la direction Sud")
         {
-            robot r{p,'S'};
+            robot r{p,'v'};
             r.tournerDroite();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'O');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'<');
         }
         SUBCASE("Depuis la direction Ouest")
         {
-            robot r{p,'O'};
+            robot r{p,'<'};
             r.tournerDroite();
-            lesCoordonnesDuRobotSontExactement(r,x,y,'N');
+            lesCoordonnesDuRobotSontExactement(r,x,y,'^');
         }
     }
 }
@@ -84,26 +84,26 @@ TEST_CASE("[robot] Le robot avance")
     position p{x,y};
     SUBCASE("Vers le Nord")
     {
-        robot r{p,'N'};
+        robot r{p,'^'};
         r.avancer();
-        lesCoordonnesDuRobotSontExactement(r,1,0,'N');
+        lesCoordonnesDuRobotSontExactement(r,1,0,'^');
     }
     SUBCASE("Vers l'Est")
     {
-        robot r{p,'E'};
+        robot r{p,'>'};
         r.avancer();
-        lesCoordonnesDuRobotSontExactement(r,2,1,'E');
+        lesCoordonnesDuRobotSontExactement(r,2,1,'>');
     }
     SUBCASE("Vers le Sud")
     {
-        robot r{p,'S'};
+        robot r{p,'v'};
         r.avancer();
-        lesCoordonnesDuRobotSontExactement(r,1,2,'S');
+        lesCoordonnesDuRobotSontExactement(r,1,2,'v');
     }
     SUBCASE("Vers l'Ouest")
     {
-        robot r{p,'O'};
+        robot r{p,'<'};
         r.avancer();
-        lesCoordonnesDuRobotSontExactement(r,0,1,'O');
+        lesCoordonnesDuRobotSontExactement(r,0,1,'<');
     }
 }
