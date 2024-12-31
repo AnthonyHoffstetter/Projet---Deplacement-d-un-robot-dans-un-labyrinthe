@@ -12,6 +12,7 @@ programme::programme() : terrainCharge(false) {
 // Méthode d'initialisation
 void programme::initialiser() {
     if (ter.chargerDepuisFichier("./test.txt")) {
+        //cout<<"Terrain charge avec succes"<<endl;
         ter.afficher();
         terrainCharge = true;
     } else {
