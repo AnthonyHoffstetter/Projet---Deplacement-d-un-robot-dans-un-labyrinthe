@@ -20,13 +20,15 @@ public:
 
     // Méthode d'initialisation
     void initialiser();
+      bool isTerrainCharge() const { return terrainCharge; }
+      terrain& returnterain() {return ter; }
 
     // Méthode pour exécuter le choix d'algorithme
     void executerChoixAlgorithme();
+    void choisirAlgorithme(int choix, robot& r, terrain& ter);
 
 private:
     // Méthode pour choisir et exécuter un algorithme
-    void choisirAlgorithme(int choix, robot& r, terrain& ter);
 
     // Attributs
     bool terrainCharge; // Indique si le terrain a été chargé
