@@ -1,6 +1,6 @@
 #define DOCTEST_CONFIG_NO_MULTITHREADING
 #include "doctest.h"
-#include "programme.cpp"
+#include "programme.h"
 #include "terrain.h"
 #include "robot.h"
 #include "algorithmeMainDroite.h"
