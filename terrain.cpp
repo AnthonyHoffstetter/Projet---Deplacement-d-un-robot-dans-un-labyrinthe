@@ -1,6 +1,8 @@
 #include "terrain.h"
 #include <fstream>
 #include <iostream>
+#include <windows.h>
+
 
 using namespace std;
 
@@ -84,6 +86,77 @@ void terrain::afficherTexteAmeliore1()
                     cout<<'-';
                 else if(murHaut || murBas)
                     cout<<'|';
+                    else
+                        cout<<'X';
+                }
+        }
+        cout<<endl;
+    }
+
+
+}
+
+void terrain::afficherTexteAmeliore2()
+{
+    SetConsoleOutputCP(65001);
+    for(int y=0;y<d_longueur;y++)
+    {
+        for(int x=0;x<d_largeur;x++)
+        {
+            if(d_terrain[y][x]!='X')
+            {
+                cout<<d_terrain[y][x];
+            }
+            else
+            {
+                bool murHaut =  y==0 || d_terrain[y-1][x]=='X';
+                bool murBas = y==d_longueur-1 || d_terrain[y+1][x]=='X';
+                bool murGauche = x==0 || d_terrain[y][x-1]=='X';
+                bool murDroite = x==d_largeur-1 || d_terrain[y][x+1]=='X';
+
+                if(murHaut && murBas && murGauche && murDroite)
+                {
+                    bool angleBasGauche =   x==0 || y==d_longueur-1 || d_terrain[y+1][x-1]=='X';
+                    bool angleBasDroite =  x==d_largeur-1 || y==d_longueur-1 || d_terrain[y+1][x+1]=='X';
+                    bool angleHautGauche =  y==0 || x==0 || d_terrain[y-1][x-1]=='X';
+                    bool angleHautDroite =  y==0 || x==d_largeur-1 || d_terrain[y-1][x+1]=='X';
+                    if(angleBasDroite && angleBasGauche && angleHautDroite && angleHautGauche)
+                        cout<<"▄";
+                }
+                else
+                {
+                    bool vraiMurHaut = y>0 && d_terrain[y-1][x]=='X';
+                    bool vraiMurBas = y<d_longueur && d_terrain[y+1][x]=='X';
+                    bool vraiMurGauche = x>0 && d_terrain[y][x-1]=='X';
+                    bool vraiMurDroite = x<d_largeur && d_terrain[y][x+1]=='X';
+
+                    if(vraiMurGauche && vraiMurHaut && vraiMurDroite && vraiMurBas)
+                        cout<<"╋";
+                    else if(vraiMurGauche && vraiMurHaut && vraiMurDroite)
+                        cout<<"┻";
+                    else if(vraiMurGauche && vraiMurBas && vraiMurDroite)
+                        cout<<"┳";
+                    else if(vraiMurGauche && vraiMurHaut && vraiMurBas)
+                        cout<<"┫";
+                    else if(vraiMurHaut && vraiMurBas && vraiMurDroite)
+                        cout<<"┣";
+                    else if(vraiMurDroite && vraiMurBas)
+                        cout<<"┏";
+                    else if(vraiMurGauche && vraiMurBas)
+                        cout<<"┓";
+                    else if(vraiMurHaut && vraiMurGauche)
+                        cout<<"┛";
+                    else
+                        cout<<"┗";
+
+                }
+            }
+                else if(murHaut && murDroite && !murBas && !murGauche || murHaut && murGauche && !murDroite && !murBas || !murHaut && !murGauche && murDroite && murBas || !murHaut && murGauche && !murDroite && murBas )
+                    cout<<'+';
+                else if(murGauche && murDroite || murDroite && !murHaut && !murBas || murGauche && !murHaut && !murBas)
+                    cout<<"━";
+                else if(murHaut || murBas)
+                    cout<<"┃";
                     else
                         cout<<'X';
                 }
