@@ -14,7 +14,8 @@ void calcul_temps::update(const robot &r) {
 
 }
 
-void calcul_temps::afficherTempsTotal() const {
+void calcul_temps::afficherStatistique()
+ {
     auto maintenant = std::chrono::steady_clock::now();
     auto tempsTotal = std::chrono::duration_cast<std::chrono::milliseconds>(maintenant - d_debut).count();
 

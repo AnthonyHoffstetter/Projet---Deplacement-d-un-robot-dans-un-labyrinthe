@@ -21,6 +21,11 @@ char robot::getDirection() const
     return d_direction;
 }
 
+int robot::getNombreObservateurs() const
+{
+    return d_observateurs.size();
+}
+
 void robot::enregistrerObservateur(std::unique_ptr<observateur> obs)
 {
         d_observateurs.push_back(std::move(obs));

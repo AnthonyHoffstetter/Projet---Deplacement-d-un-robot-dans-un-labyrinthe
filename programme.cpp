@@ -83,9 +83,9 @@ void programme::executerChoixAlgorithme() {
     cout<< endl;
     cout << "Position de depart : (" << depart.getX() << ", " << depart.getY() << ")" << endl;
     cout << "Position d'arrivee : (" << arrivee.getX() << ", " << arrivee.getY() << ")" << endl;
-    cout << "Nombre de deplacements : " << compteur->getNombreDeplacements() << endl;
-    std::cout << "Nombre de rotations : " << compteurRot->getNombreRotations() << std::endl;
-    timer->afficherTempsTotal();
+    compteur->afficherStatistique();
+    compteurRot->afficherStatistique();
+    timer->afficherStatistique();
     cout<< endl;
     cout<< endl;
     }
@@ -115,3 +115,5 @@ bool programme::choisirAffichage(int choix,terrain& ter) {
         return false;
     }
 }
+
+

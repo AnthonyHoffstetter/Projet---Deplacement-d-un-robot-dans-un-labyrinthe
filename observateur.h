@@ -11,6 +11,7 @@ public:
     virtual ~observateur() = default;
 
     virtual void update(const robot &r) = 0;
+    virtual void afficherStatistique()=0;
 };
 
 #endif // OBSERVATEUR_H

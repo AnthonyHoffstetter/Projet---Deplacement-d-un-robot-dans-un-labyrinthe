@@ -8,6 +8,7 @@ class afficheurRobot : public observateur
 {
     public:
         void update(const robot &r) override;
+        virtual void afficherStatistique() override{};
 };
 
 #endif // AFFICHEURROBOT_H

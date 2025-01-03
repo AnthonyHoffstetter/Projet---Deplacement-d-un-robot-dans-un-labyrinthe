@@ -20,8 +20,7 @@ public:
     // Méthode appelée lorsque le robot se déplace
     void update(const robot &r) override;
 
-    // Méthode pour afficher le temps écoulé total
-    void afficherTempsTotal() const;
+    virtual void afficherStatistique() override;
 };
 
 #endif // CALCUL_TEMPS_H

@@ -3,8 +3,9 @@
 
 compteur_rotation::compteur_rotation() : nombreRotations(0) {}
 
-int compteur_rotation::getNombreRotations() const {
-    return nombreRotations;
+void compteur_rotation::afficherStatistique()
+{
+    std::cout << "Nombre de rotations : " << nombreRotations << std::endl;
 }
 
 void compteur_rotation::reset() {

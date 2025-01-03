@@ -28,15 +28,14 @@ public:
     void choisirAlgorithme(int choix, robot& r, terrain& ter);
     bool choisirAffichage(int choix,terrain &ter);
 
-private:
-    // Méthode pour choisir et exécuter un algorithme
 
-    // Attributs
-    bool terrainCharge; // Indique si le terrain a été chargé
-    terrain ter;        // Objet terrain
+private:
+
+    bool terrainCharge;
+    terrain ter;
     unique_ptr<compteur_deplacement> compteur;
 
-    unique_ptr<afficheurRobot> afficheur; // Observateur pour afficher les déplacements
+    unique_ptr<afficheurRobot> afficheur;
 };
 
 

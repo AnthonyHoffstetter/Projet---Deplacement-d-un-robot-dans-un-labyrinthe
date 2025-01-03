@@ -10,8 +10,9 @@ void compteur_deplacement::update(const robot &r)
 }
 
 
-int compteur_deplacement::getNombreDeplacements() const {
-    return d_nombreDeplacements;
+void compteur_deplacement::afficherStatistique()
+{
+    std::cout << "Nombre de deplacements : " << d_nombreDeplacements << std::endl;
 }
 
 

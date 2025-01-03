@@ -125,6 +125,7 @@ TEST_CASE("[robot] Notification des observateurs")
         {
             notifie = true;
         }
+        void afficherStatistique() override{}
     };
 
     auto obs1 = std::make_unique<fake_observateur>();

@@ -13,14 +13,13 @@ public:
     // Constructeur par défaut
     compteur_rotation();
 
-    // Méthode pour obtenir le nombre de rotations effectuées
-    int getNombreRotations() const;
 
     // Méthode pour réinitialiser le compteur
     void reset();
 
     // Méthode appelée lorsque l'état du robot change (rotation détectée)
     void update(const robot& r) override;
+    virtual void afficherStatistique() override;
 };
 
 #endif // COMPTEUR_ROTATION_H
