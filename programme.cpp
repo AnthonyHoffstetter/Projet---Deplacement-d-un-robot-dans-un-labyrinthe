@@ -12,8 +12,10 @@ programme::programme() : terrainCharge(false) {
 // Méthode d'initialisation
 void programme::initialiser() {
     if (ter.chargerDepuisFichier("./test.txt")) {
-        //cout<<"Terrain charge avec succes"<<endl;
-        ter.afficher();
+        cout<<"Quel type d'affichage voulez vous ? : 1 pour texte simple, 2 pour texte ameliore 1"<<endl;
+        int choix;
+        cin>>choix;
+        choisirAffichage(choix,ter);
         terrainCharge = true;
     } else {
         cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << endl;
@@ -92,5 +94,16 @@ void programme::choisirAlgorithme(int choix, robot& r, terrain& ter) {
         algo.executer(r, ter);
     } else {
         cerr << "Choix invalide. Aucun algorithme execute." << endl;
+    }
+}
+
+void programme::choisirAffichage(int choix,terrain& ter) {
+    system("cls");
+    if (choix == 1) {
+        ter.afficher();
+    } else if (choix == 2) {
+        ter.afficherTexteAmeliore1();
+    } else {
+        cerr << "Choix invalide. Aucun affichage." << endl;
     }
 }
