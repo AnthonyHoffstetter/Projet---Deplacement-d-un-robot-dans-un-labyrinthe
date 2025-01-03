@@ -12,18 +12,18 @@
 #include "compteur_rotation.h"
 
 using namespace std ;
-// Classe principale du programme
+
 class programme {
 public:
-    // Constructeur
+
     programme();
 
-    // Méthode d'initialisation
+
     void initialiser();
       bool isTerrainCharge() const { return terrainCharge; }
       terrain& returnterain() {return ter; }
 
-    // Méthode pour exécuter le choix d'algorithme
+
     void executerChoixAlgorithme();
     void choisirAlgorithme(int choix, robot& r, terrain& ter);
     bool choisirAffichage(int choix,terrain &ter);

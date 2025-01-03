@@ -12,6 +12,7 @@ programme::programme() : terrainCharge(false) {
 // Méthode d'initialisation
 void programme::initialiser() {
     if (ter.chargerDepuisFichier("./test.txt")) {
+        cout<<"Terrain charge avec succes"<<endl;
         terrainCharge = true;
     } else {
         cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << endl;
@@ -27,12 +28,12 @@ void programme::executerChoixAlgorithme() {
         return;
     }
 
-    cout<<"Quel type d'affichage voulez vous ? : 1 pour texte simple, 2 pour texte ameliore 1"<<endl;
+    cout<<"Quel type d'affichage voulez vous ? : 1 pour texte simple, 2 pour texte ameliore 1, 3 pour texte ameliore 2"<<endl;
     int choixAffichage;
     cin>>choixAffichage;
     while(!choisirAffichage(choixAffichage,ter))
     {
-        cout<<"Veuillez saisir un numero valide (1 : texte simple, 2 : texte ameliore 1)"<<endl;
+        cout<<"Veuillez saisir un numero valide (1 : texte simple, 2 : texte ameliore 1, 3 : texte ameliore 2)"<<endl;
         cin>>choixAffichage;
         choisirAffichage(choixAffichage,ter);
     }
@@ -111,7 +112,12 @@ bool programme::choisirAffichage(int choix,terrain& ter) {
     } else if (choix == 2) {
         ter.afficherTexteAmeliore1();
         return true;
-    } else {
+    }
+    else if (choix == 3) {
+        ter.afficherTexteAmeliore2();
+        return true;
+    }
+    else {
         return false;
     }
 }
