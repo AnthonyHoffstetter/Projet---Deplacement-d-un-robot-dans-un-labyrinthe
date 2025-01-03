@@ -29,6 +29,7 @@ TEST_CASE("Tests pour la classe Terrain") {
         CHECK(terrain.chargerDepuisFichier(nomFichier) == true);
         CHECK(terrain.getLongueur() == 4); // Nombre de lignes
         CHECK(terrain.getLargeur() == 5);  // Longueur d'une ligne
+        remove(nomFichier.c_str());
     }
 
     SUBCASE("Positions de départ et d'arrivée") {
@@ -50,6 +51,7 @@ TEST_CASE("Tests pour la classe Terrain") {
 
         CHECK(arrivee.getX() == 2);
         CHECK(arrivee.getY() == 2);
+        remove(nomFichier.c_str());
     }
 
     SUBCASE("Terrain vide ou fichier inexistant") {
@@ -63,6 +65,7 @@ TEST_CASE("Tests pour la classe Terrain") {
 
         // Test avec un fichier inexistant
         CHECK(terrain.chargerDepuisFichier("inexistant.txt") == false);
+        remove(nomFichierVide.c_str());
     }
 
     SUBCASE("Vérification des cases libres") {
@@ -91,5 +94,6 @@ TEST_CASE("Tests pour la classe Terrain") {
         CHECK(terrain.estLibre(position(0, -1)) == false);
         CHECK(terrain.estLibre(position(5, 0)) == false);
         CHECK(terrain.estLibre(position(0, 4)) == false);
+        remove(nomFichier.c_str());
     }
 }
