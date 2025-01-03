@@ -50,46 +50,48 @@ void terrain::afficher() const {
         cout << endl;
     }
 }
-void terrain::afficherAmeliore() const {
-    if (d_terrain.empty()) {
-        cout << "Terrain vide." << endl;
-        return;
-    }
-
-    // Créer la bordure supérieure
-    string bordureHaut = "+" + string(d_largeur, '-') + "+";
-    cout << bordureHaut << endl;
-
-    // Afficher chaque ligne du terrain
-    for (const auto& ligne : d_terrain) {
-        for (size_t x = 0; x < ligne.size(); ++x) {
-            char c = ligne[x];
-
-            // Convertir les caractères du terrain
-            if (c == 'X') {
-                // Vérifier si c'est un mur horizontal ou vertical
-                if (x > 0 && ligne[x - 1] == 'X') {
-                    cout << '-'; // Mur horizontal
-                } else {
-                    cout << '|'; // Mur vertical
-                }
-            } else if (c == '.') {
-                cout << '.'; // Espace vide
-            } else if (c == 'D') {
-                cout << 'D'; // Point de départ
-            } else if (c == 'A') {
-                cout << 'A'; // Point d'arrivée
-            } else if (c == '>') {
-                cout << '>'; // Objet spécial
-            } else {
-                cout << c; // Tout autre caractère
+void terrain::afficherTexteAmeliore1()
+{
+    for(int y=0;y<d_longueur;y++)
+    {
+        for(int x=0;x<d_largeur;x++)
+        {
+            if(d_terrain[y][x]!='X')
+            {
+                cout<<d_terrain[y][x];
             }
+            else
+            {
+                bool murHaut =  y==0 || d_terrain[y-1][x]=='X';
+                bool murBas = y==d_longueur-1 || d_terrain[y+1][x]=='X';
+                bool murGauche = x==0 || d_terrain[y][x-1]=='X';
+                bool murDroite = x==d_largeur-1 || d_terrain[y][x+1]=='X';
+
+                if(murHaut && murBas && murGauche && murDroite)
+                {
+                    bool angleBasGauche =   x==0 || y==d_longueur-1 || d_terrain[y+1][x-1]=='X';
+                    bool angleBasDroite =  x==d_largeur-1 || y==d_longueur-1 || d_terrain[y+1][x+1]=='X';
+                    bool angleHautGauche =  y==0 || x==0 || d_terrain[y-1][x-1]=='X';
+                    bool angleHautDroite =  y==0 || x==d_largeur-1 || d_terrain[y-1][x+1]=='X';
+                    if(angleBasDroite && angleBasGauche && angleHautDroite && angleHautGauche)
+                        cout<<'#';
+                    else
+                        cout<<'+';
+                }
+                else if(murHaut && murDroite && !murBas && !murGauche || murHaut && murGauche && !murDroite && !murBas || !murHaut && !murGauche && murDroite && murBas || !murHaut && murGauche && !murDroite && murBas )
+                    cout<<'+';
+                else if(murGauche && murDroite || murDroite && !murHaut && !murBas || murGauche && !murHaut && !murBas)
+                    cout<<'-';
+                else if(murHaut || murBas)
+                    cout<<'|';
+                    else
+                        cout<<'X';
+                }
         }
-        cout << "|" << endl; // Bordure droite
+        cout<<endl;
     }
 
-    // Créer la bordure inférieure
-    cout << bordureHaut << endl;
+
 }
 
 

@@ -15,7 +15,7 @@ public:
 
     bool chargerDepuisFichier(const std::string& nomFichier);
     void afficher() const;
-    void afficherAmeliore() const;
+    void afficherTexteAmeliore1();
     int getLargeur() const;
     int getLongueur() const;
 
