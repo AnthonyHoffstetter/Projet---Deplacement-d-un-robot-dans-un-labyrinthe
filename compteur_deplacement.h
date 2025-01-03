@@ -20,7 +20,6 @@ public:
     int getNombreDeplacements() const;
 
 
-    void afficherCompteur() const;
 };
 
 #endif // COMPTEUR_DEPLACEMENT_H

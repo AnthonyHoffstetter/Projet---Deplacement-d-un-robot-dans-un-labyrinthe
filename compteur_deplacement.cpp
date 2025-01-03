@@ -14,7 +14,4 @@ int compteur_deplacement::getNombreDeplacements() const {
     return d_nombreDeplacements;
 }
 
-//inutile je pense (Antho)
-void compteur_deplacement::afficherCompteur() const {
-    std::cout << "Nombre total de déplacements : " << d_nombreDeplacements << std::endl;
-}
+
