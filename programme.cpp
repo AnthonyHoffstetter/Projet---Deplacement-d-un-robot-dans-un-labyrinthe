@@ -110,10 +110,12 @@ bool programme::choisirAffichage(int choix,terrain& ter) {
         ter.afficher();
         return true;
     } else if (choix == 2) {
-        ter.afficherTexteAmeliore1();
+        ter.transformerTexteAmeliore1();
+        ter.afficher();
         return true;
     }
     else if (choix == 3) {
+        ter.transformerTexteAmeliore1();
         ter.afficherTexteAmeliore2();
         return true;
     }

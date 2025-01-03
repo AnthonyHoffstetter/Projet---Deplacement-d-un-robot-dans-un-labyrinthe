@@ -52,15 +52,17 @@ void terrain::afficher() const {
         cout << endl;
     }
 }
-void terrain::afficherTexteAmeliore1()
+
+void terrain::transformerTexteAmeliore1()
 {
+    std::vector<std::vector<char>> terrainAmeliore=d_terrain;
     for(int y=0;y<d_longueur;y++)
     {
         for(int x=0;x<d_largeur;x++)
         {
             if(d_terrain[y][x]!='X')
             {
-                cout<<d_terrain[y][x];
+                terrainAmeliore[y][x]=d_terrain[y][x];
             }
             else
             {
@@ -76,25 +78,25 @@ void terrain::afficherTexteAmeliore1()
                     bool angleHautGauche =  y==0 || x==0 || d_terrain[y-1][x-1]=='X';
                     bool angleHautDroite =  y==0 || x==d_largeur-1 || d_terrain[y-1][x+1]=='X';
                     if(angleBasDroite && angleBasGauche && angleHautDroite && angleHautGauche)
-                        cout<<'#';
+                        terrainAmeliore[y][x]='#';
                     else
-                        cout<<'+';
+                        terrainAmeliore[y][x]='+';
                 }
                 else if(murHaut && murDroite && !murBas && !murGauche || murHaut && murGauche && !murDroite && !murBas || !murHaut && !murGauche && murDroite && murBas || !murHaut && murGauche && !murDroite && murBas )
-                    cout<<'+';
+                    terrainAmeliore[y][x]='+';
                 else if(murGauche && murDroite || murDroite && !murHaut && !murBas || murGauche && !murHaut && !murBas)
-                    cout<<'-';
+                    terrainAmeliore[y][x]='-';
                 else if(murHaut || murBas)
-                    cout<<'|';
+                    terrainAmeliore[y][x]='|';
                     else
-                        cout<<'X';
+                        terrainAmeliore[y][x]='-';
                 }
         }
-        cout<<endl;
+
     }
-
-
+    d_terrain=terrainAmeliore;
 }
+
 
 void terrain::afficherTexteAmeliore2()
 {
@@ -103,67 +105,47 @@ void terrain::afficherTexteAmeliore2()
     {
         for(int x=0;x<d_largeur;x++)
         {
-            if(d_terrain[y][x]!='X')
+            if(d_terrain[y][x]!='#' && d_terrain[y][x]!='-' && d_terrain[y][x]!='+' && d_terrain[y][x]!='|')
             {
                 cout<<d_terrain[y][x];
             }
+            else if(d_terrain[y][x]=='#')
+                cout<<"▄";
+            else if(d_terrain[y][x]=='-')
+                cout<<"━";
+            else if(d_terrain[y][x]=='|')
+                cout<<"┃";
             else
             {
-                bool murHaut =  y==0 || d_terrain[y-1][x]=='X';
-                bool murBas = y==d_longueur-1 || d_terrain[y+1][x]=='X';
-                bool murGauche = x==0 || d_terrain[y][x-1]=='X';
-                bool murDroite = x==d_largeur-1 || d_terrain[y][x+1]=='X';
-
+                bool murHaut = y>0 && (d_terrain[y-1][x]=='-' || d_terrain[y-1][x]=='+' || d_terrain[y-1][x]=='|');
+                bool murBas = y<d_longueur-1 && (d_terrain[y+1][x]=='-' || d_terrain[y+1][x]=='+' || d_terrain[y+1][x]=='|');
+                bool murGauche = x>0 && (d_terrain[y][x-1]=='-' || d_terrain[y][x-1]=='+' || d_terrain[y][x-1]=='|');
+                bool murDroite = x<d_largeur-1 && (d_terrain[y][x+1]=='-' || d_terrain[y][x+1]=='+' || d_terrain[y][x+1]=='|');
                 if(murHaut && murBas && murGauche && murDroite)
-                {
-                    bool angleBasGauche =   x==0 || y==d_longueur-1 || d_terrain[y+1][x-1]=='X';
-                    bool angleBasDroite =  x==d_largeur-1 || y==d_longueur-1 || d_terrain[y+1][x+1]=='X';
-                    bool angleHautGauche =  y==0 || x==0 || d_terrain[y-1][x-1]=='X';
-                    bool angleHautDroite =  y==0 || x==d_largeur-1 || d_terrain[y-1][x+1]=='X';
-                    if(angleBasDroite && angleBasGauche && angleHautDroite && angleHautGauche)
-                        cout<<"▄";
-                }
+                    cout<<"╋";
+                else if(murBas && murGauche && murDroite)
+                    cout<<"┳";
+                else if(murHaut && murGauche && murDroite)
+                    cout<<"┻";
+                else if(murBas && murHaut && murDroite)
+                    cout<<"┣";
+                else if(murHaut && murGauche && murBas)
+                    cout<<"┫";
+                else if(murBas && murDroite)
+                    cout<<"┏";
+                else if(murHaut && murGauche)
+                    cout<<"┛";
+                else if(murBas && murGauche)
+                    cout<<"┓";
+                else if(murHaut && murDroite)
+                    cout<<"┗";
                 else
-                {
-                    bool vraiMurHaut = y>0 && d_terrain[y-1][x]=='X';
-                    bool vraiMurBas = y<d_longueur && d_terrain[y+1][x]=='X';
-                    bool vraiMurGauche = x>0 && d_terrain[y][x-1]=='X';
-                    bool vraiMurDroite = x<d_largeur && d_terrain[y][x+1]=='X';
+                    cout<<'-';
 
-                    if(vraiMurGauche && vraiMurHaut && vraiMurDroite && vraiMurBas)
-                        cout<<"╋";
-                    else if(vraiMurGauche && vraiMurHaut && vraiMurDroite)
-                        cout<<"┻";
-                    else if(vraiMurGauche && vraiMurBas && vraiMurDroite)
-                        cout<<"┳";
-                    else if(vraiMurGauche && vraiMurHaut && vraiMurBas)
-                        cout<<"┫";
-                    else if(vraiMurHaut && vraiMurBas && vraiMurDroite)
-                        cout<<"┣";
-                    else if(vraiMurDroite && vraiMurBas)
-                        cout<<"┏";
-                    else if(vraiMurGauche && vraiMurBas)
-                        cout<<"┓";
-                    else if(vraiMurHaut && vraiMurGauche)
-                        cout<<"┛";
-                    else
-                        cout<<"┗";
-
-                }
             }
-                else if(murHaut && murDroite && !murBas && !murGauche || murHaut && murGauche && !murDroite && !murBas || !murHaut && !murGauche && murDroite && murBas || !murHaut && murGauche && !murDroite && murBas )
-                    cout<<'+';
-                else if(murGauche && murDroite || murDroite && !murHaut && !murBas || murGauche && !murHaut && !murBas)
-                    cout<<"━";
-                else if(murHaut || murBas)
-                    cout<<"┃";
-                    else
-                        cout<<'X';
-                }
         }
         cout<<endl;
     }
-
 
 }
 
