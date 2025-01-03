@@ -12,10 +12,6 @@ programme::programme() : terrainCharge(false) {
 // Méthode d'initialisation
 void programme::initialiser() {
     if (ter.chargerDepuisFichier("./test.txt")) {
-        cout<<"Quel type d'affichage voulez vous ? : 1 pour texte simple, 2 pour texte ameliore 1"<<endl;
-        int choix;
-        cin>>choix;
-        choisirAffichage(choix,ter);
         terrainCharge = true;
     } else {
         cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << endl;
@@ -29,6 +25,16 @@ void programme::executerChoixAlgorithme() {
     if (!terrainCharge) {
         cerr << "Erreur : Le terrain n'a pas ete charge. Initialisez d'abord le programme." << endl;
         return;
+    }
+
+    cout<<"Quel type d'affichage voulez vous ? : 1 pour texte simple, 2 pour texte ameliore 1"<<endl;
+    int choixAffichage;
+    cin>>choixAffichage;
+    while(!choisirAffichage(choixAffichage,ter))
+    {
+        cout<<"Veuillez saisir un numero valide (1 : texte simple, 2 : texte ameliore 1)"<<endl;
+        cin>>choixAffichage;
+        choisirAffichage(choixAffichage,ter);
     }
 
 
@@ -97,13 +103,15 @@ void programme::choisirAlgorithme(int choix, robot& r, terrain& ter) {
     }
 }
 
-void programme::choisirAffichage(int choix,terrain& ter) {
+bool programme::choisirAffichage(int choix,terrain& ter) {
     system("cls");
     if (choix == 1) {
         ter.afficher();
+        return true;
     } else if (choix == 2) {
         ter.afficherTexteAmeliore1();
+        return true;
     } else {
-        cerr << "Choix invalide. Aucun affichage." << endl;
+        return false;
     }
 }

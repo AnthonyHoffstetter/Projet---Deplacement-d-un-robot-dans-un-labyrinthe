@@ -26,7 +26,7 @@ public:
     // Méthode pour exécuter le choix d'algorithme
     void executerChoixAlgorithme();
     void choisirAlgorithme(int choix, robot& r, terrain& ter);
-    void choisirAffichage(int choix,terrain &ter);
+    bool choisirAffichage(int choix,terrain &ter);
 
 private:
     // Méthode pour choisir et exécuter un algorithme
