@@ -17,7 +17,7 @@ class programme {
 public:
 
     programme();
-    void chargerFichier();
+    void chargerFichier(const string &nomFichier);
     bool isTerrainCharge() const { return terrainCharge; }
     void initialisationRobot(robot &r);
     void executer();

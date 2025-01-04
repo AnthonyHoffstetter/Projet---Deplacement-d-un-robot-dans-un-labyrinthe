@@ -9,20 +9,20 @@ programme::programme() : terrainCharge(false) {
 }
 
 
-void programme::chargerFichier()
+void programme::chargerFichier(const string &nomFichier)
 {
-    if (ter.chargerDepuisFichier("./test.txt")) {
+    if (ter.chargerDepuisFichier(nomFichier)) {
         cout<<"Terrain charge avec succes"<<endl;
         terrainCharge = true;
     } else {
-        cerr << "Erreur : Impossible de charger le terrain depuis le fichier test.txt" << endl;
+        cerr << "Erreur : Impossible de charger le terrain depuis le fichier "<<nomFichier<< endl;
         terrainCharge = false;
     }
 }
 
 void programme::executer()
 {
-    chargerFichier();
+    chargerFichier("./test.txt");
     if (!terrainCharge)
     {
         cerr << "Erreur : Le terrain n'a pas ete charge. Initialisez d'abord le programme." << endl;
