@@ -5,7 +5,7 @@
 
 class position{
     public:
-        position() : d_x(0), d_y(0) {}
+        position();
         position(int x,int y);
         int getX() const;
         int getY() const;
