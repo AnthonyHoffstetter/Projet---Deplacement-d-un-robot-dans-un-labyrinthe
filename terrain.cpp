@@ -8,7 +8,7 @@ using namespace std;
 
 terrain::terrain()
 {
-    d_terrain.clear(); // Initialise la grille comme vide
+    d_terrain.clear();
 }
 
 bool terrain::chargerDepuisFichier(const string& nomFichier) {

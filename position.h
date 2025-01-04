@@ -1,7 +1,6 @@
 #ifndef POSITION_H
 #define POSITION_H
 
-/**Faire les tests unitaires de cette classe */
 
 class position{
     public:

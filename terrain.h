@@ -6,7 +6,7 @@
 #include <iostream>
 #include "position.h"
 
-/**Faire les tests unitaires de cette classe */
+
 
 class terrain {
 public:

@@ -14,12 +14,8 @@ private:
     std::chrono::steady_clock::time_point d_dernierUpdate;
 
 public:
-    // Constructeur
     calcul_temps();
-
-    // Méthode appelée lorsque le robot se déplace
     void update(const robot &r) override;
-
     virtual void afficherStatistique() override;
 };
 
