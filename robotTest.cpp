@@ -14,10 +14,23 @@ TEST_CASE("[robot] Le robot est bien construit")
 {
     int x{1},y{2};
     position p{1,2};
-    char direction{'N'};
+    char direction{'v'};
     robot r{p,direction};
     lesCoordonnesDuRobotSontExactement(r,x,y,direction);
 }
+
+TEST_CASE("[robot] Le robot prend une nouvelle position")
+{
+    position p{1,2};
+    char direction{'v'};
+    robot r{p,direction};
+    int x2{3},y2{3};
+    position p2{x2,y2};
+    r.setPosition(p2);
+    lesCoordonnesDuRobotSontExactement(r,x2,y2,direction);
+}
+
+
 
 TEST_CASE("[robot] les changements de direction fonctionnent")
 {
@@ -109,24 +122,27 @@ TEST_CASE("[robot] Le robot avance")
     }
 }
 
+class fake_observateur : public observateur
+{
+    public:
+        bool notifie = false;
+        bool affiche = false;
+
+        void update(const robot& r) override
+        {
+            notifie = true;
+        }
+        void afficherStatistique() override
+        {
+            affiche = true;
+        }
+};
 
 TEST_CASE("[robot] Notification des observateurs")
 {
     position p{1, 1};
     char direction{'N'};
     robot r{p, direction};
-
-
-    class fake_observateur : public observateur {
-    public:
-        bool notifie = false;
-
-        void update(const robot& r) override
-        {
-            notifie = true;
-        }
-        void afficherStatistique() override{}
-    };
 
     auto obs1 = std::make_unique<fake_observateur>();
     auto obs2 = std::make_unique<fake_observateur>();
@@ -142,6 +158,29 @@ TEST_CASE("[robot] Notification des observateurs")
     REQUIRE(ref_obs1.notifie == true);
     REQUIRE(ref_obs2.notifie == true);
 }
+
+TEST_CASE("[robot] Les observateurs appellent la fonction afficherStatistique()")
+{
+    position p{1, 1};
+    char direction{'N'};
+    robot r{p, direction};
+
+    auto obs1 = std::make_unique<fake_observateur>();
+    auto obs2 = std::make_unique<fake_observateur>();
+
+    fake_observateur& ref_obs1 = *obs1;
+    fake_observateur& ref_obs2 = *obs2;
+
+    r.enregistrerObservateur(std::move(obs1));
+    r.enregistrerObservateur(std::move(obs2));
+
+    r.afficherStatistiquesObservateurs();
+
+    REQUIRE(ref_obs1.affiche == true);
+    REQUIRE(ref_obs2.affiche == true);
+}
+
+
 
 TEST_CASE("[robot] Détection d'obstacle devant")
 {
@@ -292,3 +331,4 @@ TEST_CASE("[robot] Détection d'obstacle a droite")
 
     remove(fichierTerrain.c_str());
 }
+
