@@ -16,6 +16,6 @@ using namespace std;
 int main()
 {
     programme pro;
-    pro.executerChoixAlgorithme();
+    pro.executer();
 
 }

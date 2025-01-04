@@ -17,25 +17,19 @@ class programme {
 public:
 
     programme();
-
-
-    void initialiser();
-      bool isTerrainCharge() const { return terrainCharge; }
-      terrain& returnterain() {return ter; }
-
-
-    void executerChoixAlgorithme();
-    void choisirAlgorithme(int choix, robot& r, terrain& ter);
-    bool choisirAffichage(int choix,terrain &ter);
+    void chargerFichier();
+    bool isTerrainCharge() const { return terrainCharge; }
+    void initialisationRobot(robot &r);
+    void executer();
+    void choisirAlgorithme(robot &r);
+    void choisirAffichage();
 
 
 private:
 
     bool terrainCharge;
     terrain ter;
-    unique_ptr<compteur_deplacement> compteur;
 
-    unique_ptr<afficheurRobot> afficheur;
 };
 
 
