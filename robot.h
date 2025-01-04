@@ -19,10 +19,11 @@ class robot {
 
     public:
 
-
+        robot();
         robot(const position &pos, char direction);
         position getPositionActuelle() const;
         position getAnciennePosition() const;
+        void setPosition(const position &p);
         char getDirection() const;
         bool detecterObstacleDevant(const terrain& terrain);
         bool detecterObstacleDroite(const terrain& terrain);
@@ -31,6 +32,7 @@ class robot {
         void avancer();
         void tournerGauche();
         void tournerDroite();
+        void afficherStatistiquesObservateurs();
 
 };
 

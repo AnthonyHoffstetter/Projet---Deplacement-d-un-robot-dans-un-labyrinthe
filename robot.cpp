@@ -1,6 +1,10 @@
 #include "robot.h"
 #include <iostream>
 
+robot::robot():
+    d_position{position()},d_anciennePosition{position()},d_direction{'v'}
+{}
+
 robot::robot(const position &pos, char direction):
     d_position{pos},d_anciennePosition{pos},d_direction{direction}
 {}
@@ -139,4 +143,17 @@ bool robot::detecterObstacleDroite(const terrain& terrain)
     }
 
     return !terrain.estLibre(posDroite);
+}
+
+void robot::afficherStatistiquesObservateurs()
+{
+    for(int i=0;i<d_observateurs.size();i++)
+    {
+        d_observateurs[i]->afficherStatistique();
+    }
+}
+
+void robot::setPosition(const position &p)
+{
+    d_position=p;
 }
