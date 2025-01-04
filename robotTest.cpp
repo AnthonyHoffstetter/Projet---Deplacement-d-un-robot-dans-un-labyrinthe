@@ -34,6 +34,7 @@ TEST_CASE("[robot] Le robot est bien construit")
 
 }
 
+
 TEST_CASE("[robot] Le robot prend une nouvelle position")
 {
     int x{1},y{2};
@@ -81,9 +82,6 @@ TEST_CASE("[robot] L'ancienne position est mise a jour correctement")
         lesAnciennesCoordonnesDuRobotSontExactement(r,x,y);
     }
 }
-
-
-
 
 
 TEST_CASE("[robot] les changements de direction fonctionnent")
@@ -192,7 +190,7 @@ class fake_observateur : public observateur
         }
 };
 
-TEST_CASE("[robot] Notification des observateurs")
+TEST_CASE("[robot] Les observateurs fonctionnent")
 {
     position p{1, 1};
     char direction{'N'};
@@ -207,31 +205,23 @@ TEST_CASE("[robot] Notification des observateurs")
     r.enregistrerObservateur(std::move(obs1));
     r.enregistrerObservateur(std::move(obs2));
 
-    r.notifierObservateurs();
+    SUBCASE("Ils sont bien enregistrer")
+    {
+        REQUIRE(r.nombreObservateurs()==2);
+    }
+    SUBCASE("Ils sont bien notifie")
+    {
+        r.notifierObservateurs();
+        REQUIRE(ref_obs1.notifie == true);
+        REQUIRE(ref_obs2.notifie == true);
+    }
+    SUBCASE("Ils affichent les statistiques")
+    {
+        r.afficherStatistiquesObservateurs();
+        REQUIRE(ref_obs1.affiche == true);
+        REQUIRE(ref_obs2.affiche == true);
+    }
 
-    REQUIRE(ref_obs1.notifie == true);
-    REQUIRE(ref_obs2.notifie == true);
-}
-
-TEST_CASE("[robot] Les observateurs appellent la fonction afficherStatistique()")
-{
-    position p{1, 1};
-    char direction{'N'};
-    robot r{p, direction};
-
-    auto obs1 = std::make_unique<fake_observateur>();
-    auto obs2 = std::make_unique<fake_observateur>();
-
-    fake_observateur& ref_obs1 = *obs1;
-    fake_observateur& ref_obs2 = *obs2;
-
-    r.enregistrerObservateur(std::move(obs1));
-    r.enregistrerObservateur(std::move(obs2));
-
-    r.afficherStatistiquesObservateurs();
-
-    REQUIRE(ref_obs1.affiche == true);
-    REQUIRE(ref_obs2.affiche == true);
 }
 
 
