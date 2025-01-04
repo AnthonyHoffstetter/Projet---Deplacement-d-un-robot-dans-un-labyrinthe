@@ -28,16 +28,9 @@ TEST_CASE("[position] Modifier les coordonnees d'une position fonctionne")
 {
     int x1{5}, y1{6};
     int x2{8}, y2{9};
-
     position p(x1, y1);
-
-    // Vérification avant la modification
     lesCoordonnesDeLaPositionSontExactement(p, x1, y1);
-
-    // Modification des coordonnees
     p.setPosition(x2, y2);
-
-    // Vérification après la modification
     lesCoordonnesDeLaPositionSontExactement(p, x2, y2);
 }
 
@@ -49,13 +42,13 @@ TEST_CASE("[position] Comparaison de positions")
 
     SUBCASE("Les positions égales doivent être détectées")
     {
-        REQUIRE(p1 == p2);  // p1 et p2 doivent être égales
-        REQUIRE_FALSE(p1 == p3);  // p1 et p3 ne doivent pas être égales
+        REQUIRE(p1 == p2);
+        REQUIRE_FALSE(p1 == p3);
     }
 
     SUBCASE("Les positions différentes doivent être détectées")
     {
-        REQUIRE(p1 != p3);  // p1 et p3 doivent être différentes
-        REQUIRE_FALSE(p1 != p2);  // p1 et p2 ne doivent pas être différentes
+        REQUIRE(p1 != p3);
+        REQUIRE_FALSE(p1 != p2);
     }
 }
