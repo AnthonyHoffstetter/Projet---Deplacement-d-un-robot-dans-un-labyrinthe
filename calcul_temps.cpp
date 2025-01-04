@@ -5,10 +5,9 @@ calcul_temps::calcul_temps() {
     d_dernierUpdate = d_debut;
 }
 
-void calcul_temps::update(const robot &r) {
+void calcul_temps::update(const robot &r)
+{
     auto maintenant = std::chrono::steady_clock::now();
-    auto tempsEcoule = std::chrono::duration_cast<std::chrono::milliseconds>(maintenant - d_dernierUpdate).count();
-
     d_dernierUpdate = maintenant;
 
 

@@ -82,9 +82,9 @@ void terrain::transformerTexteAmeliore1()
                     else
                         terrainAmeliore[y][x]='+';
                 }
-                else if(murHaut && murDroite && !murBas && !murGauche || murHaut && murGauche && !murDroite && !murBas || !murHaut && !murGauche && murDroite && murBas || !murHaut && murGauche && !murDroite && murBas )
+                else if((murHaut && murDroite && !murBas && !murGauche) || (murHaut && murGauche && !murDroite && !murBas) || (!murHaut && !murGauche && murDroite && murBas) || (!murHaut && murGauche && !murDroite && murBas))
                     terrainAmeliore[y][x]='+';
-                else if(murGauche && murDroite || murDroite && !murHaut && !murBas || murGauche && !murHaut && !murBas)
+                else if((murGauche && murDroite) || (murDroite && !murHaut && !murBas) || (murGauche && !murHaut && !murBas))
                     terrainAmeliore[y][x]='-';
                 else if(murHaut || murBas)
                     terrainAmeliore[y][x]='|';

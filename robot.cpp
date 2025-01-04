@@ -33,7 +33,7 @@ void robot::enregistrerObservateur(std::unique_ptr<observateur> obs)
 
 void robot::notifierObservateurs()
 {
-    for(int i=0;i<d_observateurs.size();i++)
+    for(int i=0;i<nombreObservateurs();i++)
     {
         d_observateurs[i]->update(*this);
     }
@@ -147,7 +147,7 @@ bool robot::detecterObstacleDroite(const terrain& terrain)
 
 void robot::afficherStatistiquesObservateurs()
 {
-    for(int i=0;i<d_observateurs.size();i++)
+    for(int i=0;i<nombreObservateurs();i++)
     {
         d_observateurs[i]->afficherStatistique();
     }
