@@ -155,5 +155,6 @@ void robot::afficherStatistiquesObservateurs()
 
 void robot::setPosition(const position &p)
 {
+    d_anciennePosition=d_position;
     d_position=p;
 }

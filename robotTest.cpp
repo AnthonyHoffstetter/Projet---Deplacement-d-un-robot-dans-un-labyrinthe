@@ -10,6 +10,12 @@ void lesCoordonnesDuRobotSontExactement(const robot& r, int x, int y, char direc
     REQUIRE(r.getDirection() == direction);
 }
 
+void lesAnciennesCoordonnesDuRobotSontExactement(const robot& r, int x, int y)
+{
+    REQUIRE(r.getAnciennePosition().getX() == x);
+    REQUIRE(r.getAnciennePosition().getY() == y);
+}
+
 TEST_CASE("[robot] Le robot est bien construit")
 {
     int x{1},y{2};
@@ -21,14 +27,53 @@ TEST_CASE("[robot] Le robot est bien construit")
 
 TEST_CASE("[robot] Le robot prend une nouvelle position")
 {
-    position p{1,2};
+    int x{1},y{2};
+    position p{x,y};
     char direction{'v'};
     robot r{p,direction};
     int x2{3},y2{3};
     position p2{x2,y2};
     r.setPosition(p2);
     lesCoordonnesDuRobotSontExactement(r,x2,y2,direction);
+    SUBCASE("L'ancienne position est stocke")
+    {
+        lesAnciennesCoordonnesDuRobotSontExactement(r,x,y);
+    }
 }
+
+TEST_CASE("[robot] L'ancienne position est mise a jour correctement")
+{
+    int x{1},y{2};
+    char direction{'v'};
+    position p{x,y};
+    SUBCASE("Quand le robot est construit")
+    {
+        robot r{p,direction};
+        lesAnciennesCoordonnesDuRobotSontExactement(r,x,y);
+    }
+    SUBCASE("Quand le robot avance")
+    {
+        robot r{p,direction};
+        r.avancer();
+        r.avancer();
+        lesAnciennesCoordonnesDuRobotSontExactement(r,x,y+1);
+    }
+    SUBCASE("Quand le robot tourne a gauche")
+    {
+        robot r{p,direction};
+        r.tournerGauche();
+        lesAnciennesCoordonnesDuRobotSontExactement(r,x,y);
+
+    }
+    SUBCASE("Quand le robot tourne a droite")
+    {
+        robot r{p,direction};
+        r.tournerDroite();
+        lesAnciennesCoordonnesDuRobotSontExactement(r,x,y);
+    }
+}
+
+
 
 
 
