@@ -18,11 +18,20 @@ void lesAnciennesCoordonnesDuRobotSontExactement(const robot& r, int x, int y)
 
 TEST_CASE("[robot] Le robot est bien construit")
 {
-    int x{1},y{2};
-    position p{1,2};
-    char direction{'v'};
-    robot r{p,direction};
-    lesCoordonnesDuRobotSontExactement(r,x,y,direction);
+    SUBCASE("Avec des coordonnees")
+    {
+        int x{1},y{2};
+        position p{1,2};
+        char direction{'v'};
+        robot r{p,direction};
+        lesCoordonnesDuRobotSontExactement(r,x,y,direction);
+    }
+    SUBCASE("Par defaut")
+    {
+        robot r{};
+        lesCoordonnesDuRobotSontExactement(r,0,0,'v');
+    }
+
 }
 
 TEST_CASE("[robot] Le robot prend une nouvelle position")
