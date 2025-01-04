@@ -158,3 +158,8 @@ void robot::setPosition(const position &p)
     d_anciennePosition=d_position;
     d_position=p;
 }
+
+int robot::nombreObservateurs() const
+{
+    return d_observateurs.size();
+}
