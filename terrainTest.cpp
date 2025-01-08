@@ -26,9 +26,9 @@ TEST_CASE("Tests pour la classe Terrain") {
         std::string nomFichier = "test_terrain.txt";
         creerFichierTest(nomFichier, contenu);
 
-        CHECK(terrain.chargerDepuisFichier(nomFichier) == true);
-        CHECK(terrain.getLongueur() == 4); // Nombre de lignes
-        CHECK(terrain.getLargeur() == 5);  // Longueur d'une ligne
+        REQUIRE(terrain.chargerDepuisFichier(nomFichier) == true);
+        REQUIRE_EQ(terrain.getLongueur(),4); // Nombre de lignes
+        REQUIRE_EQ(terrain.getLargeur(),5);  // Longueur d'une ligne
         remove(nomFichier.c_str());
     }
 
@@ -46,11 +46,11 @@ TEST_CASE("Tests pour la classe Terrain") {
         position depart = terrain.getCaseDepart();
         position arrivee = terrain.getCaseArrivee();
 
-        CHECK(depart.getX() == 2);
-        CHECK(depart.getY() == 1);
+        REQUIRE_EQ(depart.getX(),2);
+        REQUIRE_EQ(depart.getY(),1);
 
-        CHECK(arrivee.getX() == 2);
-        CHECK(arrivee.getY() == 2);
+        REQUIRE_EQ(arrivee.getX(),2);
+        REQUIRE_EQ(arrivee.getY(),2);
         remove(nomFichier.c_str());
     }
 
@@ -59,12 +59,12 @@ TEST_CASE("Tests pour la classe Terrain") {
         std::string nomFichierVide = "test_vide.txt";
         creerFichierTest(nomFichierVide, "");
 
-        CHECK(terrain.chargerDepuisFichier(nomFichierVide) == true);
-        CHECK(terrain.getLongueur() == 0);
-        CHECK(terrain.getLargeur() == 0);
+        REQUIRE(terrain.chargerDepuisFichier(nomFichierVide) == true);
+        REQUIRE_EQ(terrain.getLongueur(),0);
+        REQUIRE_EQ(terrain.getLargeur(),0);
 
         // Test avec un fichier inexistant
-        CHECK(terrain.chargerDepuisFichier("inexistant.txt") == false);
+        REQUIRE(terrain.chargerDepuisFichier("inexistant.txt") == false);
         remove(nomFichierVide.c_str());
     }
 
@@ -80,20 +80,20 @@ TEST_CASE("Tests pour la classe Terrain") {
         terrain.chargerDepuisFichier(nomFichier);
 
         // Case libre
-        CHECK(terrain.estLibre(position(0, 0)) == true);
+        REQUIRE(terrain.estLibre(position(0, 0)) == true);
 
         // Case occupée par un mur
-        CHECK(terrain.estLibre(position(0, 3)) == false);
+        REQUIRE(terrain.estLibre(position(0, 3)) == false);
 
         // Case départ et arrivée
-        CHECK(terrain.estLibre(position(2, 1)) == true); // 'D'
-        CHECK(terrain.estLibre(position(2, 2)) == true); // 'A'
+        REQUIRE(terrain.estLibre(position(2, 1)) == true); // 'D'
+        REQUIRE(terrain.estLibre(position(2, 2)) == true); // 'A'
 
         // Case en dehors des limites
-        CHECK(terrain.estLibre(position(-1, 0)) == false);
-        CHECK(terrain.estLibre(position(0, -1)) == false);
-        CHECK(terrain.estLibre(position(5, 0)) == false);
-        CHECK(terrain.estLibre(position(0, 4)) == false);
+        REQUIRE(terrain.estLibre(position(-1, 0)) == false);
+        REQUIRE(terrain.estLibre(position(0, -1)) == false);
+        REQUIRE(terrain.estLibre(position(5, 0)) == false);
+        REQUIRE(terrain.estLibre(position(0, 4)) == false);
         remove(nomFichier.c_str());
     }
 }
