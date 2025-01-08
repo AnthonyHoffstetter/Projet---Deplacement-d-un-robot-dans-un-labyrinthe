@@ -4,8 +4,8 @@
 
 void lesCoordonnesDeLaPositionSontExactement(const position& p,int x, int y)
 {
-    REQUIRE( p.getX() == x );
-    REQUIRE( p.getY() == y );
+    REQUIRE_EQ( p.getX(),x );
+    REQUIRE_EQ( p.getY(),y );
 }
 
 TEST_CASE("[position] Les positions sont bien construites")

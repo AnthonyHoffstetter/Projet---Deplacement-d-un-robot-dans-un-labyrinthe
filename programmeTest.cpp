@@ -58,9 +58,9 @@ TEST_CASE("[programme] Le robot est correctement initialise")
     p.chargerFichier("terrain.txt");
     robot r{};
     p.initialisationRobot(r);
-    REQUIRE(r.getPositionActuelle().getX()==0);
-    REQUIRE(r.getPositionActuelle().getY()==2);
-    REQUIRE(r.nombreObservateurs()==4);
+    REQUIRE_EQ(r.getPositionActuelle().getX(),0);
+    REQUIRE_EQ(r.getPositionActuelle().getY(),2);
+    REQUIRE_EQ(r.nombreObservateurs(),4);
     remove(fichierTerrain.c_str());
 
 }
