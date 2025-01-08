@@ -12,7 +12,7 @@ private:
 public:
 
     compteur_deplacement();
-
+    int getNombreDeplacements() const;
     void update(const robot &r) override;
     virtual void afficherStatistique() override;
 

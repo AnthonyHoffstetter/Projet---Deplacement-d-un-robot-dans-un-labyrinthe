@@ -52,7 +52,7 @@ void programme::initialisationRobot(robot &r)
 
     afficheurRobot* afficheur = new afficheurRobot();
     compteur_deplacement* compteur = new compteur_deplacement();
-    compteur_rotation* compteurRot = new compteur_rotation();
+    compteur_rotation* compteurRot = new compteur_rotation(r.getDirection());
     calcul_temps* timer = new calcul_temps();
 
     r.enregistrerObservateur(std::unique_ptr<compteur_deplacement>(compteur));

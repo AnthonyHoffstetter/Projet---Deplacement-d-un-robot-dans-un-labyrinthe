@@ -1,7 +1,7 @@
 #include "compteur_rotation.h"
 #include "robot.h"
 
-compteur_rotation::compteur_rotation() : nombreRotations(0) {}
+compteur_rotation::compteur_rotation(char direction) : nombreRotations(0),ancienneDirection{direction} {}
 
 void compteur_rotation::afficherStatistique()
 {
@@ -12,9 +12,12 @@ void compteur_rotation::reset() {
     nombreRotations = 0;
 }
 
-void compteur_rotation::update(const robot& r) {
+int compteur_rotation::getNombreRotations() const
+{
+    return nombreRotations;
+}
 
-    static char ancienneDirection = r.getDirection();
+void compteur_rotation::update(const robot& r) {
 
     if (r.getDirection() != ancienneDirection) {
         nombreRotations++;

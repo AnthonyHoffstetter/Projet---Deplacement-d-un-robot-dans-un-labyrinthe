@@ -9,6 +9,11 @@ void compteur_deplacement::update(const robot &r)
     d_nombreDeplacements++;
 }
 
+int compteur_deplacement::getNombreDeplacements() const
+{
+    return d_nombreDeplacements;
+}
+
 
 void compteur_deplacement::afficherStatistique()
 {
